@@ -1,4 +1,4 @@
-\# Bookclub App
+\# ReadTogether
 
 
 
