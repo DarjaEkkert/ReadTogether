@@ -6,7 +6,15 @@
 
 
 
-Bereits umgesetzt:
+\### Status
+
+
+
+Abgeschlossen
+
+
+
+\### Umgesetzte Funktionen
 
 
 
@@ -32,37 +40,33 @@ Bereits umgesetzt:
 
 
 
-\### Ziel
+\### Status
 
 
 
-Die Anwendung soll von einer lokalen Einzelplatzlösung zu einer echten Webanwendung weiterentwickelt werden.
+Abgeschlossen
 
 
 
-\### Geplante Funktionen
+\### Umgesetzte Funktionen
 
 
 
-\* \[ ] Supabase-Projekt erstellen
+\- \[x] Supabase-Projekt erstellt
 
-\* \[ ] Datenbank einrichten
+\- \[x] Datenbank eingerichtet
 
-\* \[ ] Verbindung zwischen Anwendung und Datenbank herstellen
+\- \[x] Verbindung zwischen Anwendung und Datenbank hergestellt
 
-\* \[ ] Bücher zentral speichern
+\- \[x] Bücher zentral gespeichert
 
-\* \[ ] Bücher aus der Datenbank laden
+\- \[x] Bücher aus der Datenbank geladen
 
+\- \[x] Bücher bearbeitet
 
+\- \[x] Bücher gelöscht
 
-\### Ergebnis
-
-
-
-Alle Nutzer sehen dieselben Bücher und Daten.
-
-
+\- \[x] Buchcover über Supabase Storage gespeichert
 
 \---
 

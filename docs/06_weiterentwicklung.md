@@ -153,16 +153,38 @@ Eine spätere Migration auf ein eigenes Spring-Boot-Backend bleibt weiterhin mö
 
 ---
 
-## Geplante Version 7 – Benutzerkonten
+## Version 7 – Cloud-Anbindung mit Supabase
 
-Für die nächste Entwicklungsphase ist die Einführung einer Benutzerverwaltung geplant.
+Die Anwendung wurde von einer lokalen Browser-Anwendung zu einer cloudbasierten Webanwendung weiterentwickelt.
 
-Benutzer sollen sich registrieren, anmelden und persönliche Rezensionen verwalten können.
+Zuvor wurden alle Daten ausschließlich über den `localStorage` des Browsers gespeichert. Dadurch waren die Daten nur auf einem einzelnen Gerät verfügbar.
 
-Technische Umsetzung:
-- Supabase Authentication
-- E-Mail und Passwort
-- Benutzerprofile
+### Umgesetzte Funktionen
+
+* Anbindung an Supabase
+* Zentrale PostgreSQL-Datenbank
+* Speicherung von Büchern in der Cloud
+* Laden von Büchern aus der Datenbank
+* Löschen von Büchern aus der Datenbank
+* Bearbeiten von Büchern
+* Speicherung von Buchcovern über Supabase Storage
+
+### Technische Umsetzung
+
+Für die Datenhaltung wurde Supabase verwendet. Die Anwendung kommuniziert direkt mit einer PostgreSQL-Datenbank über die bereitgestellte API.
+
+Buchcover werden nicht mehr lokal gespeichert, sondern in einem Storage-Bucket abgelegt. In der Datenbank wird lediglich die URL des Bildes gespeichert.
+
+### Vorteile
+
+* Daten stehen auf mehreren Geräten zur Verfügung
+* Zentrale Datenspeicherung
+* Grundlage für Mehrbenutzerbetrieb
+* Vorbereitung für Benutzerkonten und Authentifizierung
+
+### Screenshot
+
+![Cloud-Version](images/app-v7-cloud.png)
 
 ---
 
