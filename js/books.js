@@ -1,4 +1,21 @@
-let books = JSON.parse(localStorage.getItem("books")) || [];
+let books = [];
+
+//Buch anzeigen
+async function loadBooks() {
+
+  const { data, error } = await supabaseClient
+    .from("books")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  books = data;
+  renderBooks();
+}
 
 function save() {
   localStorage.setItem("books", JSON.stringify(books));
@@ -30,20 +47,28 @@ function addBook() {
   document.getElementById("review").value = "";
   document.getElementById("coverFile").value = "";
 }
+//Buch hinzufügen
+async function saveBook(title, author, review, rating, coverData) {
 
-function saveBook(title, author, review, rating, coverData) {
-  const book = {
-    id: Date.now(),
-    title: title,
-    author: author,
-    cover: coverData,
-    review: review,
-    rating: rating
-  };
+  const { data, error } = await supabaseClient
+    .from("books")
+    .insert([
+      {
+        title: title,
+        author: author,
+        review: review,
+        rating: parseInt(rating)
+      }
+    ]);
 
-  books.push(book);
-  save();
-  renderBooks();
+  if (error) {
+    console.error(error);
+    alert("Fehler beim Speichern");
+    return;
+  }
+
+  await loadBooks();
+  alert("Buch erfolgreich gespeichert");
 }
 
 function deleteBook(id) {
@@ -61,7 +86,7 @@ function renderBooks() {
     div.className = "book";
 
     div.innerHTML = `
-      ${b.cover ? `<img src="${b.cover}" />` : ""}
+      ""
 
       <div class="book-content">
         <div class="book-title">${b.title}</div>
