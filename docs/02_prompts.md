@@ -2,7 +2,7 @@
 
 ## Ziel
 
-Unterstützung der Entwicklung einer Bookclub-App durch den Einsatz von KI-Tools zur Generierung von UI, Funktionalität und Architektur.
+Unterstützung der Entwicklung einer ReadTogether-App durch den Einsatz von KI-Tools zur Generierung von UI, Funktionalität und Architektur.
 
 ---
 
@@ -10,12 +10,13 @@ Unterstützung der Entwicklung einer Bookclub-App durch den Einsatz von KI-Tools
 
 - Google AI (Stitch)
 - Lovable.dev
+- GPT
 
 ---
 
 ## Prompt 1 – UI-Design (Google AI / Stitch)
 
-Erstelle eine moderne Benutzeroberfläche (GUI) für eine Bookclub-App mit:
+Erstelle eine moderne Benutzeroberfläche (GUI) für eine ReadTogether-App mit:
 - Liste von Büchern  
 - Bewertungssystem  
 - Möglichkeit, Bücher hinzuzufügen  
