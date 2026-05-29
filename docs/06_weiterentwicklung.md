@@ -68,83 +68,113 @@ Technisch wird das ausgewählte Bild im Browser verarbeitet und gespeichert, sod
 Die Daten werden im `localStorage` gespeichert und sind nur lokal im Browser verfügbar.  
 Eine Synchronisation zwischen verschiedenen Nutzern ist nicht möglich.
 
----
-
-## Version 7 – Benutzer-Authentifizierung
-
-Die Anwendung wurde zu einer Multi-User-Plattform erweitert.
-
-Benutzer können sich registrieren, einloggen und abmelden.  
-Die Authentifizierung erfolgt über E-Mail und Passwort.
-
-### Screenshot
-
-![Login](images/app-v7-login.png)
 
 ---
 
-## Version 8 – Dashboard und Rollen
-
-Nach erfolgreicher Implementierung der Authentifizierung wurde ein Dashboard eingeführt.
-
-- Administratoren können Bücher hinzufügen  
-- Nutzer können auf die gemeinsame Bibliothek zugreifen  
-
-### Screenshot
-
-![Dashboard](images/app-v8-dashboard.png)
-
----
-
-## Version 9 – Bewertungs- und Lesestatistik
-
-Die Anwendung wurde erweitert, sodass Bewertungen nicht nur einzeln gespeichert, sondern auch aggregiert dargestellt werden.
-
-Für jedes Buch werden angezeigt:
-- durchschnittliche Bewertung  
-- Anzahl der Bewertungen  
-- Anzahl der Nutzer, die das Buch als gelesen markiert haben  
-
-Dadurch entsteht ein realistisches Bild der Buchbewertung innerhalb des Buchclubs.
-
-### Screenshot
-
-![Bewertungen](images/app-v9-bookrating.png)
-
----
-
-## Version 10 – Echtzeit-Aktualisierung
-
-Es wurde festgestellt, dass Änderungen (Bewertungen, Lesestatus) nicht sofort sichtbar waren.
-
-Die Anwendung wurde daher angepasst, sodass nach jeder Benutzeraktion die Daten neu geladen und direkt angezeigt werden.
-
-Dadurch ist keine Aktualisierung der Seite oder erneutes Einloggen mehr erforderlich.
-
----
 
 ## Aktueller Stand
 
-Die Anwendung verfügt nun über:
+Die aktuelle Anwendung verfügt über:
 
-- modernes UI  
-- Upload von Buchcovern  
-- zentrale Datenbank (Multi-User)  
-- Benutzer-Authentifizierung  
-- Rollen (Admin / Nutzer)  
-- gemeinsame Bibliothek  
-- Bewertungen und Rezensionen pro Nutzer  
-- aggregierte Statistiken  
-- Echtzeit-Aktualisierung  
+- modernes Benutzerinterface
+- Buchverwaltung
+- Rezensionen
+- Sternebewertungen
+- Upload von Buchcovern
+- lokale Speicherung über localStorage
 
-### Screenshot
+### Einschränkungen
 
-![Upload](Image/app-v5-design.png)
+- keine Benutzerkonten
+- keine zentrale Datenbank
+- keine Synchronisation zwischen Geräten
+- keine gemeinsame Nutzung durch mehrere Nutzer
+
+---
+## Architekturentscheidung 2026
+
+### Ausgangssituation
+
+Die aktuelle Version der Bookclub-App speichert alle Daten lokal im Browser über den `localStorage`.
+
+Diese Lösung eignet sich für einen Prototypen, hat aber einige Nachteile:
+
+* Daten sind nur auf einem Gerät verfügbar
+* keine gemeinsame Nutzung durch mehrere Benutzer
+* keine Benutzerkonten
+* keine Synchronisation zwischen verschiedenen Geräten
+
+### Mögliche Lösungen
+
+Für die Weiterentwicklung wurden zwei Varianten betrachtet:
+
+#### Spring Boot + PostgreSQL
+
+Vorteile:
+
+* professionelle Backend-Architektur
+* hohe Flexibilität
+* guter Lernwert
+
+Nachteile:
+
+* hoher Entwicklungsaufwand
+* längere Umsetzungszeit
+* zusätzlicher Aufwand für Hosting und Wartung
+
+#### Supabase
+
+Vorteile:
+
+* Benutzerverwaltung bereits vorhanden
+* PostgreSQL-Datenbank bereits integriert
+* Speicherung von Buchcovern möglich
+* schnelle Entwicklung
+* geringer Wartungsaufwand
+
+Nachteile:
+
+* weniger selbst entwickelter Backend-Code
+* Abhängigkeit von einem externen Dienst
+
+### Entscheidung
+
+Für die nächste Entwicklungsphase wurde Supabase gewählt.
+
+Dadurch kann die Anwendung schneller zu einer echten Mehrbenutzer-App erweitert werden. Geplant sind unter anderem:
+
+* Benutzerkonten
+* gemeinsame Buchbibliothek
+* Bewertungen und Rezensionen
+* Lesestatistiken
+* Speicherung von Buchcovern
+
+Eine spätere Migration auf ein eigenes Spring-Boot-Backend bleibt weiterhin möglich.
+
 ---
 
-## Nächste Schritte (optional)
+## Geplante Version 7 – Benutzerkonten
 
-- Detailseite für Bücher  
-- Kommentare zu Rezensionen  
-- Favoritenliste  
-- Monatsbuch-Funktion für den Buchclub  
+Für die nächste Entwicklungsphase ist die Einführung einer Benutzerverwaltung geplant.
+
+Benutzer sollen sich registrieren, anmelden und persönliche Rezensionen verwalten können.
+
+Technische Umsetzung:
+- Supabase Authentication
+- E-Mail und Passwort
+- Benutzerprofile
+
+---
+
+## Geplante Version 8 – Gemeinsame Bibliothek
+
+Aktuell werden alle Bücher lokal im Browser gespeichert.
+
+Zukünftig sollen Bücher zentral in einer Datenbank gespeichert werden, damit alle Mitglieder des Buchclubs dieselben Daten sehen können.
+
+Geplante Funktionen:
+
+- gemeinsame Buchliste
+- zentrale Speicherung aller Rezensionen
+- gemeinsame Bewertungen
+- Synchronisation zwischen verschiedenen Geräten
