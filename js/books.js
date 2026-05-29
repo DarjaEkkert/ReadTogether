@@ -1,4 +1,5 @@
 let books = [];
+let editingBookId = null;
 
 //Buch anzeigen
 async function loadBooks() {
@@ -17,9 +18,6 @@ async function loadBooks() {
   renderBooks();
 }
 
-function save() {
-  localStorage.setItem("books", JSON.stringify(books));
-}
 
 function addBook() {
   const fileInput = document.getElementById("coverFile");
@@ -49,7 +47,63 @@ function addBook() {
 }
 //Buch hinzufügen
 async function saveBook(title, author, review, rating, coverData) {
+    if (editingBookId) {
 
+        const { error } = await supabaseClient
+            .from("books")
+            .update({
+                title: title,
+                author: author,
+                review: review,
+                rating: parseInt(rating)
+            })
+            .eq("id", editingBookId);
+
+        if (error) {
+            console.error(error);
+            alert("Fehler beim Aktualisieren");
+            return;
+        }
+
+        editingBookId = null;
+
+        document.querySelector(".form button").textContent =
+            "Add Book";
+
+        await loadBooks();
+
+        alert("Buch aktualisiert");
+
+        return;
+    }
+
+    let coverUrl = "";
+
+    if (coverData) {
+
+    const fileName = `cover-${Date.now()}.png`;
+
+    const base64Response = await fetch(coverData);
+    const blob = await base64Response.blob();
+
+    const { error: uploadError } = await supabaseClient
+        .storage
+        .from("covers")
+        .upload(fileName, blob);
+
+    if (uploadError) {
+        console.error(uploadError);
+        alert("Fehler beim Hochladen des Covers");
+        return;
+    }
+
+    const { data } = supabaseClient
+        .storage
+        .from("covers")
+        .getPublicUrl(fileName);
+
+    coverUrl = data.publicUrl;
+    }
   const { data, error } = await supabaseClient
     .from("books")
     .insert([
@@ -57,7 +111,8 @@ async function saveBook(title, author, review, rating, coverData) {
         title: title,
         author: author,
         review: review,
-        rating: parseInt(rating)
+        rating: parseInt(rating),
+        cover_url: coverUrl
       }
     ]);
 
@@ -71,10 +126,42 @@ async function saveBook(title, author, review, rating, coverData) {
   alert("Buch erfolgreich gespeichert");
 }
 
-function deleteBook(id) {
-  books = books.filter(b => b.id !== id);
-  save();
-  renderBooks();
+async function deleteBook(id) {
+
+  console.log("Lösche Buch:", id);
+  console.log("Typ:", typeof id);
+
+  const { error } = await supabaseClient
+    .from("books")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    alert("Fehler beim Löschen");
+    return;
+  }
+
+  console.log("Gelöscht");
+
+  await loadBooks();
+}
+
+function editBook(id) {
+
+  const book = books.find(b => b.id === id);
+
+  if (!book) return;
+
+  document.getElementById("title").value = book.title;
+  document.getElementById("author").value = book.author;
+  document.getElementById("review").value = book.review;
+  document.getElementById("rating").value = book.rating;
+
+  editingBookId = id;
+
+  document.querySelector(".form button").textContent =
+    "Save Changes";
 }
 
 function renderBooks() {
@@ -84,10 +171,9 @@ function renderBooks() {
   books.forEach(b => {
     const div = document.createElement("div");
     div.className = "book";
-
+    console.log(b.id);
     div.innerHTML = `
-      ""
-
+        ${b.cover_url ? `<img src="${b.cover_url}" />` : ""}
       <div class="book-content">
         <div class="book-title">${b.title}</div>
         <div class="book-author">by ${b.author}</div>
@@ -97,7 +183,8 @@ function renderBooks() {
         <div class="review">${b.review || ""}</div>
 
         <div class="actions">
-          <button onclick="deleteBook(${b.id})">🗑️</button>
+            <button onclick="editBook('${b.id}')">✏️</button>
+            <button onclick="deleteBook('${b.id}')">🗑️</button>
         </div>
       </div>
     `;
