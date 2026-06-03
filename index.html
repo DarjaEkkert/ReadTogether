@@ -12,6 +12,38 @@
   <h1>ReadTogetehr</h1>
   <p class="subtitle">We need more books</p>
 
+  <div id="authSection">
+
+    <div id="loginArea">
+
+        <input id="email" type="email" placeholder="E-Mail">
+        <input id="password" type="password" placeholder="Passwort">
+
+<button id="registerBtn" onclick="registerUser()">
+    Registrieren
+</button>
+
+<button id="loginBtn" onclick="loginUser()">
+    Login
+</button>
+
+<button id="logoutBtn" onclick="logoutUser()">
+    Logout
+</button>
+
+<button
+    id="logoutBtn"
+    onclick="logoutUser()"
+    style="display:none;">
+    Logout
+</button>
+
+    <span id="currentUser"></span>
+
+</div>
+
+</div>
+
   <h2>📚 My Book List</h2>
 
   <div class="form">
@@ -41,5 +73,6 @@
 <script src="js/books.js"></script>
 <script src="js/app.js"></script>
 
+<script src="js/users.js"></script>
 </body>
 </html>

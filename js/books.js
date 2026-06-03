@@ -4,9 +4,20 @@ let editingBookId = null;
 //Buch anzeigen
 async function loadBooks() {
 
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  if (!user) {
+    books = [];
+    renderBooks();
+    return;
+  }
+
   const { data, error } = await supabaseClient
     .from("books")
     .select("*")
+    .eq("user_id", user.id)
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -104,6 +115,9 @@ async function saveBook(title, author, review, rating, coverData) {
 
     coverUrl = data.publicUrl;
     }
+    const {
+  data: { user }
+} = await supabaseClient.auth.getUser();
   const { data, error } = await supabaseClient
     .from("books")
     .insert([
@@ -112,7 +126,8 @@ async function saveBook(title, author, review, rating, coverData) {
         author: author,
         review: review,
         rating: parseInt(rating),
-        cover_url: coverUrl
+        cover_url: coverUrl,
+        user_id: user.id
       }
     ]);
 

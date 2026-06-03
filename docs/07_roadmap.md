@@ -88,11 +88,11 @@ Jedes Buchclub-Mitglied erhält ein eigenes Benutzerkonto.
 
 
 
-\* \[ ] Registrierung
+\* \[x] Registrierung
 
-\* \[ ] Login
+\* \[x] Login
 
-\* \[ ] Logout
+\* \[x] Logout
 
 \* \[ ] Benutzerprofil
 
