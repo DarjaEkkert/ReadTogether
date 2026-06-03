@@ -6,8 +6,7 @@ body {
 }
 
 .container {
-  max-width: 850px;
-  margin: auto;
+  width: 100%;
 }
 
 h1 {
@@ -78,6 +77,10 @@ button:hover {
 .book-content {
   flex: 1;
 }
+#bookSection {
+    width: 100%;
+    max-width: 1200px;
+}
 
 img {
   width: 90px;
@@ -138,7 +141,7 @@ img {
 #mainContent {
     flex: 1;
     padding: 30px 50px;
-    max-width: 1200px;
+    max-width: none;
 }
 
 #avatar {
@@ -164,4 +167,17 @@ img {
 
     font-size: 22px;
     font-weight: bold;
+}
+
+#coverSlider {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#sliderImage {
+    height: 300px;
+    width: auto;
+    border-radius: 12px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }

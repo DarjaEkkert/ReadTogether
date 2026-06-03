@@ -45,7 +45,7 @@ async function loginUser() {
     const userName = data.user.email.split("@")[0];
 
     document.getElementById("welcomeMessage").textContent =
-                            `Ich freue mich, dass du da bist, ${userName}! `;
+                            `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
 
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
@@ -60,6 +60,7 @@ async function loginUser() {
     document.getElementById("sidebar").style.display = "flex";
     document.getElementById("logoutBtn").style.display = "block";
     document.getElementById("bookSection").style.display = "block";
+    document.getElementById("coverSlider").style.display = "none";
     console.log("Vor loadBooks");
     await loadBooks();
     console.log("Nach loadBooks");
@@ -88,9 +89,10 @@ async function logoutUser() {
     document.getElementById("logoutBtn").style.display = "none";
     document.getElementById("currentUser").textContent = "";
     document.getElementById("welcomeMessage").textContent =
-                                "Ich freue mich, dass du da bist!";
+                                "Lass uns lesen!";
     document.getElementById("sidebar").style.display = "none";
     document.getElementById("bookSection").style.display = "none";
+    document.getElementById("coverSlider").style.display = "block";
 
     books = [];
     renderBooks();
@@ -108,11 +110,12 @@ async function checkUser() {
     if (user) {
 
         document.getElementById("currentUser").textContent =  user.email;
+        document.getElementById("coverSlider").style.display = "none";
 
         const userName = user.email.split("@")[0];
 
         document.getElementById("welcomeMessage").textContent =
-                        `Ich freue mich, dass du da bist, ${userName}! `;
+                        `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
 
         document.getElementById("email").style.display = "none";
         document.getElementById("password").style.display = "none";
@@ -123,7 +126,7 @@ async function checkUser() {
         document.getElementById("logoutBtn").style.display = "inline-block";
         document.getElementById("sidebar").style.display = "flex";
         document.getElementById("logoutBtn").style.display = "block";
-
+        document.getElementById("bookSection").style.display = "block";
 
 
         await loadBooks();
