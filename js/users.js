@@ -41,6 +41,12 @@ async function loginUser() {
     }
 
     document.getElementById("currentUser").textContent = data.user.email;
+
+    const userName = data.user.email.split("@")[0];
+
+    document.getElementById("welcomeMessage").textContent =
+                            `Ich freue mich, dass du da bist, ${userName}! `;
+
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
 
@@ -51,6 +57,9 @@ async function loginUser() {
     document.getElementById("loginBtn").style.display = "none";
 
     document.getElementById("logoutBtn").style.display = "inline-block";
+    document.getElementById("sidebar").style.display = "flex";
+    document.getElementById("logoutBtn").style.display = "block";
+    document.getElementById("bookSection").style.display = "block";
     console.log("Vor loadBooks");
     await loadBooks();
     console.log("Nach loadBooks");
@@ -78,13 +87,18 @@ async function logoutUser() {
 
     document.getElementById("logoutBtn").style.display = "none";
     document.getElementById("currentUser").textContent = "";
+    document.getElementById("welcomeMessage").textContent =
+                                "Ich freue mich, dass du da bist!";
+    document.getElementById("sidebar").style.display = "none";
+    document.getElementById("bookSection").style.display = "none";
+
     books = [];
     renderBooks();
 
     
 }
 
-//Benutzer beim Laden anzeigen
+//Benutzer eingelogt, anzeigen
 async function checkUser() {
 
     const {
@@ -94,6 +108,12 @@ async function checkUser() {
     if (user) {
 
         document.getElementById("currentUser").textContent =  user.email;
+
+        const userName = user.email.split("@")[0];
+
+        document.getElementById("welcomeMessage").textContent =
+                        `Ich freue mich, dass du da bist, ${userName}! `;
+
         document.getElementById("email").style.display = "none";
         document.getElementById("password").style.display = "none";
 
@@ -101,6 +121,8 @@ async function checkUser() {
         document.getElementById("loginBtn").style.display = "none";
 
         document.getElementById("logoutBtn").style.display = "inline-block";
+        document.getElementById("sidebar").style.display = "flex";
+        document.getElementById("logoutBtn").style.display = "block";
 
 
 

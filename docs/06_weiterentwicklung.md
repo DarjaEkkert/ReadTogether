@@ -188,15 +188,47 @@ Buchcover werden nicht mehr lokal gespeichert, sondern in einem Storage-Bucket a
 
 ---
 
-## Geplante Version 8 – Gemeinsame Bibliothek
+## Version 8 – Benutzerkonten und Authentifizierung
 
-Aktuell werden alle Bücher lokal im Browser gespeichert.
+Die Anwendung soll mehrere Benutzer unterstützen. Jedes Mitglied des Buchclubs erhält ein eigenes Benutzerkonto und kann sich anmelden
 
-Zukünftig sollen Bücher zentral in einer Datenbank gespeichert werden, damit alle Mitglieder des Buchclubs dieselben Daten sehen können.
+### Umgesetzte Funktionen
+*Registrierung neuer Benutzer
+*Login mit E-Mail und Passwort
+*Logout
+*Authentifizierung über Supabase Auth
+*Anzeige des aktuell angemeldeten Benutzers
+*Benutzerabhängige Buchverwaltung
+*Automatisches Laden der Bücher nach Login
+*Automatisches Ausblenden der Bücher nach Logout
 
-Geplante Funktionen:
+### Technische Umsetzung
 
-- gemeinsame Buchliste
-- zentrale Speicherung aller Rezensionen
-- gemeinsame Bewertungen
-- Synchronisation zwischen verschiedenen Geräten
+Für die Benutzerverwaltung wurde die Authentifizierung von Supabase verwendet.
+
+Neue Benutzer können sich registrieren und anschließend mit ihrer E-Mail-Adresse und ihrem Passwort anmelden.
+
+Beim Anlegen eines Buches wird die eindeutige Benutzer-ID (user_id) des aktuell angemeldeten Benutzers gespeichert.
+
+Beim Laden der Bücher wird die Datenbankabfrage auf diese Benutzer-ID eingeschränkt. Dadurch werden ausschließlich die Bücher des angemeldeten Benutzers angezeigt.
+
+### Vorteile
+
+* Mehrbenutzerbetrieb möglich
+*Trennung der Daten verschiedener Nutzer
+*Grundlage für Rollen und Berechtigungen
+*Höhere Datensicherheit
+*Vorbereitung für zukünftige Community-Funktionen
+
+### Screenshot
+
+![Login-Ansicht](images/ansicht_login.png)
+![Benutzer test@test.de](images/ansicht_User1.png)
+![Benutzer max@test.de](images/ansicht_User2.png)
+
+### Ergebnis
+
+Die Anwendung wurde von einer Cloud-Anwendung mit gemeinsamer Datenhaltung zu einer echten Mehrbenutzer-Anwendung erweitert. Jeder Benutzer besitzt eine eigene Buchsammlung und kann nur seine eigenen Einträge sehen und verwalten.
+
+### Ergänzung
+Im Rahmen der Weiterentwicklung wurde die Benutzeroberfläche für Benutzerprofile vorbereitet. Nach dem Login erscheint eine feste Sidebar auf der linken Seite. Diese enthält einen Avatarbereich, Benutzerinformationen, Lesestatistiken sowie die Logout-Funktion. Der Hauptbereich wurde von der Navigation getrennt und bildet die Grundlage für zukünftige Profilfunktionen.

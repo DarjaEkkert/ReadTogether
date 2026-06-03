@@ -2,7 +2,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: #f3ede7;
   margin: 0;
-  padding: 30px;
+  padding: 0;
 }
 
 .container {
@@ -24,19 +24,29 @@ h1 {
 
 .form {
   background: #ffffff;
+  width: 100%;
   padding: 20px;
   border-radius: 14px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
   margin-bottom: 20px;
+
+  box-sizing: border-box;
 }
 
 input, textarea, select {
   width: 100%;
+  box-sizing: border-box;
   padding: 12px;
   margin: 6px 0;
   border-radius: 12px;
   border: 1px solid #e3ddd7;
   background: #faf7f4;
+}
+
+.form button {
+    display: block;
+    margin-left: auto;
+    margin-top: 15px;
 }
 
 button {
@@ -46,8 +56,7 @@ button {
   border-radius: 20px;
   padding: 10px 20px;
   cursor: pointer;
-  float: right;
-}
+  }
 
 button:hover {
   background: #a85a30;
@@ -56,6 +65,8 @@ button:hover {
 
 .book {
   display: flex;
+  width: 100%;
+  box-sizing: border-box;
   gap: 15px;
   background: #ffffff;
   border-radius: 14px;
@@ -96,4 +107,61 @@ img {
 .actions button {
   background: transparent;
   color: #666;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+#sidebar {
+    width: 280px;
+    min-height: 100vh;
+    background-color: #d8d0ca;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 30px;
+}
+
+#sidebarBottom {
+    margin-top: auto;
+}
+
+#logoutBtn {
+    width: 100%;
+}
+#mainContent {
+    flex: 1;
+    padding: 30px 50px;
+    max-width: 1200px;
+}
+
+#avatar {
+    font-size: 80px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#profileName {
+    text-align: center;
+}
+
+#booksRead {
+    text-align: center;
+}
+
+#welcomeMessage {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+
+    font-size: 22px;
+    font-weight: bold;
 }
