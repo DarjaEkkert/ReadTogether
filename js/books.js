@@ -83,7 +83,7 @@ async function saveBook(title, author, review, rating, coverData) {
 
         await loadBooks();
 
-        alert("Buch aktualisiert");
+        
 
         return;
     }
@@ -104,7 +104,7 @@ async function saveBook(title, author, review, rating, coverData) {
 
     if (uploadError) {
         console.error(uploadError);
-        alert("Fehler beim Hochladen des Covers");
+        
         return;
     }
 
@@ -138,7 +138,7 @@ async function saveBook(title, author, review, rating, coverData) {
   }
 
   await loadBooks();
-  alert("Buch erfolgreich gespeichert");
+  
 }
 
 async function deleteBook(id) {

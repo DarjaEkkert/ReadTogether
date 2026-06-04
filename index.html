@@ -11,7 +11,7 @@
 
     <div id="sidebar" style="display:none;">
 
-    <div id="profileSection">
+    <div id="sidebarProfile">
 
         <div id="avatar">
             👤
@@ -28,7 +28,9 @@
     </div>
 
     <div id="sidebarBottom">
-
+                     <button id="profileBtn" onclick="showProfile()"  style="display:none;">
+                    My Profile
+                     </button>
         <button id="logoutBtn"
                 onclick="logoutUser()"
                 style="display:none;">
@@ -57,16 +59,11 @@
 
 <button id="loginBtn" onclick="loginUser()">
     Login
+
+    
 </button>
 
 
-
-          <button
-           id="logoutBtn"
-           onclick="logoutUser()"
-            style="display:none;">
-          Logout
-        </button>
 
     <span id="currentUser"></span>
 <div id="coverSlider">
@@ -76,7 +73,34 @@
      alt="Book Cover">
 
 </div>
+
+
 </div>
+
+<div id="profileSection" style="display:none;">
+
+    <h2>My Profile</h2>
+
+    <div>
+        <label>Name</label><br>
+        <input type="text" id="profileUsername">
+    </div>
+
+    <br>
+
+    <div>
+        <label>Geburtstag</label><br>
+        <input type="date" id="profileBirthday">
+    </div>
+
+    <br>
+
+    <button id="saveProfileBtn"
+        onclick="saveProfile()">
+    Speichern
+    </button>
+
+    <div id="saveMessage"></div>
 
 </div>
 
@@ -102,7 +126,7 @@
   </div>
 
   <div id="list"></div>
-
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 

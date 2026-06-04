@@ -5,9 +5,6 @@ body {
   padding: 0;
 }
 
-.container {
-  width: 100%;
-}
 
 h1 {
   font-family: Georgia, serif;
@@ -137,6 +134,12 @@ img {
 
 #logoutBtn {
     width: 100%;
+    margin-bottom: 10px;
+}
+
+#profileBtn {
+    width: 100%;
+    margin-bottom: 10px;
 }
 #mainContent {
     flex: 1;
@@ -180,4 +183,11 @@ img {
     border-radius: 12px;
 
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+#saveMessage {
+    color: green !important;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
 }
