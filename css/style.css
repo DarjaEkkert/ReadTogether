@@ -117,7 +117,7 @@ img {
 }
 
 #sidebar {
-    width: 280px;
+    width: 220px;
     min-height: 100vh;
     background-color: #d8d0ca;
 
@@ -129,7 +129,9 @@ img {
 }
 
 #sidebarBottom {
-    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 #logoutBtn {
@@ -147,18 +149,17 @@ img {
     max-width: none;
 }
 
-#avatar {
-    font-size: 80px;
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 #profileName {
     text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 #booksRead {
     text-align: center;
+    font-size: 14px;
+    color: #666;
 }
 
 #welcomeMessage {
@@ -190,4 +191,12 @@ img {
     text-align: center;
     font-weight: bold;
     margin-top: 15px;
+}
+#avatarImage {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px auto;
 }

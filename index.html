@@ -13,9 +13,9 @@
 
     <div id="sidebarProfile">
 
-        <div id="avatar">
-            👤
-        </div>
+        <img id="avatarImage"
+            src="avatars/avatar1.png"
+            alt="Avatar">
 
         <h3 id="profileName">
             Gast
@@ -82,6 +82,20 @@
     <h2>My Profile</h2>
 
     <div>
+    <label>Avatar</label><br>
+
+    <select id="profileAvatar">
+        <option value="avatar1">Avatar 1</option>
+        <option value="avatar2">Avatar 2</option>
+        <option value="avatar3">Avatar 3</option>
+        <option value="avatar4">Avatar 4</option>
+        <option value="avatar5">Avatar 5</option>
+    </select>
+</div>
+
+<br>
+
+    <div>
         <label>Name</label><br>
         <input type="text" id="profileUsername">
     </div>
@@ -126,6 +140,7 @@
   </div>
 
   <div id="list"></div>
+</div>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -83,6 +83,10 @@ async function loginUser() {
     const profile = await getProfile(data.user.id);
 
     const userName = profile?.username || data.user.email.split("@")[0];
+
+    const avatar = profile?.avatar || "avatar1";
+
+    document.getElementById("avatarImage").src = `avatars/${avatar}.png`;
     document.getElementById("profileName").textContent = userName;
 
     document.getElementById("welcomeMessage").textContent =
@@ -158,6 +162,10 @@ async function checkUser() {
         const profile = await getProfile(user.id);
 
         const userName = profile?.username || user.email.split("@")[0];
+
+        const avatar = profile?.avatar || "avatar1";
+
+        document.getElementById("avatarImage").src = `avatars/${avatar}.png`;
         document.getElementById("profileName").textContent = userName;
         document.getElementById("welcomeMessage").textContent =
                         `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
@@ -199,6 +207,8 @@ async function showProfile() {
 
     document.getElementById("profileBirthday").value =
         profile?.birthday || "";
+    document.getElementById("profileAvatar").value =
+        profile?.avatar || "avatar1";
 }
 
 // my Profil updaten
@@ -213,13 +223,16 @@ async function saveProfile() {
 
     const birthday =
         document.getElementById("profileBirthday").value;
+    const avatar =
+        document.getElementById("profileAvatar").value;
 
     const { error } =
         await supabaseClient
             .from("profiles")
             .update({
                 username: username,
-                birthday: birthday
+                birthday: birthday,
+                avatar: avatar
             })
             .eq("id", user.id);
 
@@ -230,6 +243,8 @@ async function saveProfile() {
 
     document.getElementById("profileName").textContent =
         username;
+    document.getElementById("avatarImage").src =
+    `avatars/${avatar}.png`;
 
 
 
