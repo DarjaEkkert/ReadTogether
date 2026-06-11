@@ -101,6 +101,12 @@ async function loginUser() {
     }
     document.getElementById("profileName").textContent = userName;
 
+    const roleText = role === "admin"
+    ? "Administrator"
+    : "Mitglied";
+console.log(document.getElementById("userRole"));
+    document.getElementById("userRole").textContent = roleText;
+
     document.getElementById("welcomeMessage").textContent =
                             `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
 
@@ -151,6 +157,7 @@ async function logoutUser() {
                                 "Lass uns lesen!";
     document.getElementById("sidebar").style.display = "none";
     document.getElementById("bookSection").style.display = "none";
+    document.getElementById("profileSection").style.display = "none";
     document.getElementById("coverSlider").style.display = "block";
     document.getElementById("adminPanel").style.display = "none";
     document.getElementById("adminBookForm").style.display = "none";
@@ -171,7 +178,7 @@ function updateAdminPanel(role) {
 }
 
 //Name und Avatar anzeigen
-function updateProfileInfo(profile, user) {
+function updateProfileInfo(profile, user, role) {
 
     const userName = profile?.username || user.email.split("@")[0];
     const avatar = profile?.avatar || "avatar1";
@@ -183,6 +190,19 @@ function updateProfileInfo(profile, user) {
     }
 
     document.getElementById("profileName").textContent = userName;
+
+    const roleText =
+    role === "admin"
+        ? "Administrator"
+        : "Mitglied";
+
+    const roleElement = document.getElementById("userRole");
+
+console.log("roleElement:", roleElement);
+
+if (roleElement) {
+    roleElement.textContent = roleText;
+}
 
     document.getElementById("welcomeMessage").textContent =
         `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
@@ -224,72 +244,12 @@ async function checkUser() {
     const role = profile?.role || "user";
 
     updateAdminPanel(role);
-    updateProfileInfo(profile, user);
+    updateProfileInfo(profile, user, role);
     showLoggedInView();
 
     await loadBooks();
 }
-/*async function checkUser() {
 
-    const {
-        data: { user }
-    } = await supabaseClient.auth.getUser();
-
-    if (user) {
-
-        document.getElementById("currentUser").textContent = "";
-        document.getElementById("coverSlider").style.display = "none";
-
-        const profile = await getProfile(user.id);
-
-        const role = profile?.role || "user";
-
-        console.log("Role:", role);
-
-        document.getElementById("adminPanel").style.display = "none";
-        document.getElementById("adminBookForm").style.display = "none";
-
-        if (role === "admin") {
-
-            document.getElementById("adminPanel").style.display = "block";
-            document.getElementById("adminBookForm").style.display = "block";
-
-        } else {
-
-            document.getElementById("adminPanel").style.display = "none";
-            document.getElementById("adminBookForm").style.display = "none";
-        }
-
-        const userName = profile?.username || user.email.split("@")[0];
-
-        const avatar = profile?.avatar || "avatar1";
-
-        const img = document.getElementById("avatarImage");
-        console.log(img);
-
-        if (img) {
-            img.src = `avatars/${avatar}.png`;
-        }
-
-        document.getElementById("profileName").textContent = userName;
-
-        document.getElementById("welcomeMessage").textContent =
-            `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
-
-        document.getElementById("email").style.display = "none";
-        document.getElementById("password").style.display = "none";
-
-        document.getElementById("registerBtn").style.display = "none";
-        document.getElementById("loginBtn").style.display = "none";
-
-        document.getElementById("profileBtn").style.display = "inline-block";
-        document.getElementById("logoutBtn").style.display = "inline-block";
-        document.getElementById("sidebar").style.display = "flex";
-        document.getElementById("bookSection").style.display = "block";
-
-        await loadBooks();
-    }
-}*/
 
 checkUser();
 

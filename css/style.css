@@ -118,7 +118,8 @@ img {
 
 #sidebar {
     width: 220px;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
     background-color: #d8d0ca;
 
     display: flex;
@@ -199,4 +200,10 @@ img {
     object-fit: cover;
     display: block;
     margin: 0 auto 20px auto;
+}
+#userRole {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
 }
