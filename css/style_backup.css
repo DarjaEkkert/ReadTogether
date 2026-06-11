@@ -1,0 +1,202 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f3ede7;
+  margin: 0;
+  padding: 0;
+}
+
+
+h1 {
+  font-family: Georgia, serif;
+  color: #4b2e2e;
+  font-size: 42px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #8a7a73;
+  margin-bottom: 25px;
+}
+
+.form {
+  background: #ffffff;
+  width: 100%;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+
+  box-sizing: border-box;
+}
+
+input, textarea, select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin: 6px 0;
+  border-radius: 12px;
+  border: 1px solid #e3ddd7;
+  background: #faf7f4;
+}
+
+.form button {
+    display: block;
+    margin-left: auto;
+    margin-top: 15px;
+}
+
+button {
+  background: #c86b3c;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  }
+
+button:hover {
+  background: #a85a30;
+}
+
+
+.book {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 15px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 15px;
+  margin-top: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.book-content {
+  flex: 1;
+}
+#bookSection {
+    width: 100%;
+    max-width: 1200px;
+}
+
+img {
+  width: 90px;
+  height: 130px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.book-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.book-author {
+  color: #7c6d65;
+  font-size: 14px;
+}
+
+.rating {
+  color: #c86b3c;
+}
+
+.review {
+  margin-top: 5px;
+}
+
+.actions button {
+  background: transparent;
+  color: #666;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+#sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background-color: #d8d0ca;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 30px;
+}
+
+#sidebarBottom {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#logoutBtn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#profileBtn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#mainContent {
+    flex: 1;
+    padding: 30px 50px;
+    max-width: none;
+}
+
+
+#profileName {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#booksRead {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+#welcomeMessage {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#coverSlider {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#sliderImage {
+    height: 300px;
+    width: auto;
+    border-radius: 12px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+#saveMessage {
+    color: green !important;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+}
+#avatarImage {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px auto;
+}

@@ -1,89 +1,188 @@
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  /* Colors */
+  --color-brand:        #c86b3c;
+  --color-brand-dark:   #a85a30;
+  --color-bg:           #f3ede7;
+  --color-surface:      #ffffff;
+  --color-sidebar:      #d8d0ca;
+  --color-input-bg:     #faf7f4;
+  --color-input-border: #e3ddd7;
+  --color-text-muted:   #7c6d65;
+  --color-text-subtle:  #8a7a73;
+  --color-heading:      #4b2e2e;
+
+  /* Shadows */
+  --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.05);
+  --shadow-slider: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+  /* Radii */
+  --radius-card:  14px;
+  --radius-btn:   20px;
+  --radius-input: 12px;
+  --radius-img:   10px;
+
+  /* Spacing (4px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+}
+
+/* ============================================
+   RESET
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   BASE
+   ============================================ */
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f3ede7;
+  background: var(--color-bg);
   margin: 0;
   padding: 0;
 }
 
-
 h1 {
   font-family: Georgia, serif;
-  color: #4b2e2e;
-  font-size: 42px;
-  margin-bottom: 5px;
+  color: var(--color-heading);
+  font-size: 40px;
+  margin-bottom: var(--space-1);
 }
 
 .subtitle {
-  color: #8a7a73;
-  margin-bottom: 25px;
+  color: var(--color-text-subtle);
+  margin-bottom: var(--space-6);
 }
 
-.form {
-  background: #ffffff;
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container {
+  display: flex;
+  min-height: 100vh;
   width: 100%;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-  margin-bottom: 20px;
-
-  box-sizing: border-box;
+  margin: 0;
 }
 
-input, textarea, select {
+#sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background-color: var(--color-sidebar);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+#sidebarBottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+#mainContent {
+  flex: 1;
+  padding: 30px 50px;
+}
+
+#bookSection {
   width: 100%;
-  box-sizing: border-box;
-  padding: 12px;
-  margin: 6px 0;
-  border-radius: 12px;
-  border: 1px solid #e3ddd7;
-  background: #faf7f4;
+  max-width: 1200px;
 }
 
-.form button {
-    display: block;
-    margin-left: auto;
-    margin-top: 15px;
-}
-
+/* ============================================
+   BUTTONS
+   ============================================ */
 button {
-  background: #c86b3c;
-  color: white;
   border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
+  border-radius: var(--radius-btn);
+  padding: 10px var(--space-5);
   cursor: pointer;
-  }
-
-button:hover {
-  background: #a85a30;
 }
 
+.btn-primary {
+  background: var(--color-brand);
+  color: white;
+}
 
+.btn-primary:hover {
+  background: var(--color-brand-dark);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #666;
+}
+
+/* Sidebar buttons fill full width */
+#sidebarBottom button {
+  width: 100%;
+}
+
+/* Form submit button aligns right */
+.form button {
+  display: block;
+  margin-left: auto;
+  margin-top: 15px;
+}
+
+/* ============================================
+   FORM
+   ============================================ */
+.form {
+  background: var(--color-surface);
+  width: 100%;
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-5);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: var(--space-3);
+  margin: 6px 0;
+  border-radius: var(--radius-input);
+  border: 1px solid var(--color-input-border);
+  background: var(--color-input-bg);
+}
+
+/* ============================================
+   BOOK CARD
+   ============================================ */
 .book {
   display: flex;
   width: 100%;
-  box-sizing: border-box;
   gap: 15px;
-  background: #ffffff;
-  border-radius: 14px;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
   padding: 15px;
   margin-top: 15px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-card);
 }
 
 .book-content {
   flex: 1;
 }
-#bookSection {
-    width: 100%;
-    max-width: 1200px;
-}
 
-img {
+.book-cover {
   width: 90px;
   height: 130px;
-  border-radius: 10px;
+  border-radius: var(--radius-img);
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .book-title {
@@ -92,111 +191,70 @@ img {
 }
 
 .book-author {
-  color: #7c6d65;
+  color: var(--color-text-muted);
   font-size: 14px;
 }
 
 .rating {
-  color: #c86b3c;
+  color: var(--color-brand);
 }
 
 .review {
-  margin-top: 5px;
+  margin-top: var(--space-1);
 }
 
-.actions button {
-  background: transparent;
-  color: #666;
+/* ============================================
+   PROFILE / SIDEBAR CONTENT
+   ============================================ */
+#avatarImage {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto var(--space-5);
 }
-
-.container {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
-    margin: 0;
-}
-
-#sidebar {
-    width: 220px;
-    min-height: 100vh;
-    background-color: #d8d0ca;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    padding: 30px;
-}
-
-#sidebarBottom {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-#logoutBtn {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-#profileBtn {
-    width: 100%;
-    margin-bottom: 10px;
-}
-#mainContent {
-    flex: 1;
-    padding: 30px 50px;
-    max-width: none;
-}
-
 
 #profileName {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 15px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 #booksRead {
-    text-align: center;
-    font-size: 14px;
-    color: #666;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
 }
 
+/* ============================================
+   WELCOME & WIDGETS
+   ============================================ */
 #welcomeMessage {
-    background: white;
-    padding: 20px;
-    border-radius: 14px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-
-    font-size: 22px;
-    font-weight: bold;
+  background: var(--color-surface);
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  margin-bottom: var(--space-5);
+  box-shadow: var(--shadow-card);
+  font-size: 22px;
+  font-weight: bold;
 }
 
 #coverSlider {
-    text-align: center;
-    margin: 20px 0;
+  text-align: center;
+  margin: var(--space-5) 0;
 }
 
 #sliderImage {
-    height: 300px;
-    width: auto;
-    border-radius: 12px;
-
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  height: 300px;
+  width: auto;
+  border-radius: var(--radius-input);
+  box-shadow: var(--shadow-slider);
 }
 
 #saveMessage {
-    color: green !important;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 15px;
-}
-#avatarImage {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto 20px auto;
+  color: green;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
 }
