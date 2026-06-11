@@ -81,12 +81,24 @@ async function loginUser() {
     document.getElementById("currentUser").textContent = "";
 
     const profile = await getProfile(data.user.id);
+    const role = profile?.role || "user";
+    if (role === "admin") {
 
+        document.getElementById("adminPanel").style.display = "block";
+
+        document.getElementById("adminBookForm").style.display = "block";
+    }else {
+
+    document.getElementById("adminBookForm").style.display = "none";
+    }
     const userName = profile?.username || data.user.email.split("@")[0];
-
     const avatar = profile?.avatar || "avatar1";
+    const img = document.getElementById("avatarImage");
+    console.log(img);
 
-    document.getElementById("avatarImage").src = `avatars/${avatar}.png`;
+    if (img) {
+    img.src = `avatars/${avatar}.png`;
+    }
     document.getElementById("profileName").textContent = userName;
 
     document.getElementById("welcomeMessage").textContent =
@@ -140,6 +152,8 @@ async function logoutUser() {
     document.getElementById("sidebar").style.display = "none";
     document.getElementById("bookSection").style.display = "none";
     document.getElementById("coverSlider").style.display = "block";
+    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("adminBookForm").style.display = "none";
 
     books = [];
     renderBooks();
@@ -147,8 +161,75 @@ async function logoutUser() {
     
 }
 
+//Steuerung adminPanel anhang von rolle
+function updateAdminPanel(role) {
+
+    const display = role === "admin" ? "block" : "none";
+
+    document.getElementById("adminPanel").style.display = display;
+    document.getElementById("adminBookForm").style.display = display;
+}
+
+//Name und Avatar anzeigen
+function updateProfileInfo(profile, user) {
+
+    const userName = profile?.username || user.email.split("@")[0];
+    const avatar = profile?.avatar || "avatar1";
+
+    const img = document.getElementById("avatarImage");
+
+    if (img) {
+        img.src = `avatars/${avatar}.png`;
+    }
+
+    document.getElementById("profileName").textContent = userName;
+
+    document.getElementById("welcomeMessage").textContent =
+        `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
+}
+//Anzeigesteuerung nach LOgin
+function showLoggedInView() {
+
+    document.getElementById("email").style.display = "none";
+    document.getElementById("password").style.display = "none";
+
+    document.getElementById("registerBtn").style.display = "none";
+    document.getElementById("loginBtn").style.display = "none";
+
+    document.getElementById("profileBtn").style.display = "inline-block";
+    document.getElementById("logoutBtn").style.display = "inline-block";
+
+    document.getElementById("sidebar").style.display = "flex";
+    document.getElementById("bookSection").style.display = "block";
+}
+//Verstecken Gast elements
+function hideGuestElements() {
+
+    document.getElementById("currentUser").textContent = "";
+    document.getElementById("coverSlider").style.display = "none";
+}
 //Benutzer eingelogt, anzeigen
+
 async function checkUser() {
+
+    const {
+        data: { user }
+    } = await supabaseClient.auth.getUser();
+
+    if (!user) return;
+
+    hideGuestElements();
+
+    const profile = await getProfile(user.id);
+    const role = profile?.role || "user";
+
+    updateAdminPanel(role);
+    updateProfileInfo(profile, user);
+    showLoggedInView();
+
+    await loadBooks();
+}
+/*async function checkUser() {
 
     const {
         data: { user }
@@ -156,19 +237,44 @@ async function checkUser() {
 
     if (user) {
 
-        document.getElementById("currentUser").textContent =  "";
+        document.getElementById("currentUser").textContent = "";
         document.getElementById("coverSlider").style.display = "none";
 
         const profile = await getProfile(user.id);
+
+        const role = profile?.role || "user";
+
+        console.log("Role:", role);
+
+        document.getElementById("adminPanel").style.display = "none";
+        document.getElementById("adminBookForm").style.display = "none";
+
+        if (role === "admin") {
+
+            document.getElementById("adminPanel").style.display = "block";
+            document.getElementById("adminBookForm").style.display = "block";
+
+        } else {
+
+            document.getElementById("adminPanel").style.display = "none";
+            document.getElementById("adminBookForm").style.display = "none";
+        }
 
         const userName = profile?.username || user.email.split("@")[0];
 
         const avatar = profile?.avatar || "avatar1";
 
-        document.getElementById("avatarImage").src = `avatars/${avatar}.png`;
+        const img = document.getElementById("avatarImage");
+        console.log(img);
+
+        if (img) {
+            img.src = `avatars/${avatar}.png`;
+        }
+
         document.getElementById("profileName").textContent = userName;
+
         document.getElementById("welcomeMessage").textContent =
-                        `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
+            `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
 
         document.getElementById("email").style.display = "none";
         document.getElementById("password").style.display = "none";
@@ -179,13 +285,11 @@ async function checkUser() {
         document.getElementById("profileBtn").style.display = "inline-block";
         document.getElementById("logoutBtn").style.display = "inline-block";
         document.getElementById("sidebar").style.display = "flex";
-        document.getElementById("logoutBtn").style.display = "block";
         document.getElementById("bookSection").style.display = "block";
-
 
         await loadBooks();
     }
-}
+}*/
 
 checkUser();
 
