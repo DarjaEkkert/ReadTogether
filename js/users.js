@@ -258,6 +258,7 @@ checkUser();
 async function showProfile() {
 
     document.getElementById("bookSection").style.display = "none";
+    document.getElementById("adminPanel").style.display = "none";
     document.getElementById("profileSection").style.display = "block";
 
     const {
@@ -326,4 +327,17 @@ async function saveProfile() {
     setTimeout(() => {
          message.textContent = "";
         }, 10000);
+}
+
+function closeProfile() {
+
+    document.getElementById("profileSection").style.display = "none";
+    document.getElementById("bookSection").style.display = "block";
+
+    const role =
+        document.getElementById("userRole").textContent;
+
+    if (role === "Administrator") {
+        document.getElementById("adminPanel").style.display = "block";
+    }
 }
