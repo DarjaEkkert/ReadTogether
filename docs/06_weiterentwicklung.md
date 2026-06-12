@@ -256,3 +256,22 @@ In dieser Version wurde die bisherige persönliche Bücherliste zu einer gemeins
 ### Screenshot
 
 ![Aktuelle Leserunde](images/ansicht_aktuelleLeserunde.png)
+
+##Version 9.1 
+
+*Neue Tabelle book_reviews in Supabase erstellt.
+*Mitglieder können Bücher als gelesen markieren.
+*Bewertungsformular mit Lesedatum, Sternebewertung und Review implementiert.
+*Interaktive Sternebewertung (1–5 Sterne) umgesetzt.
+*Bewertungen werden in der Datenbank gespeichert.
+*Mehrfachbewertungen desselben Buches durch denselben Benutzer werden verhindert.
+*Erfolgsmeldung nach dem Speichern einer Bewertung hinzugefügt.
+*Gelesene Bücher werden automatisch ausgegraut dargestellt.
+*Der Button „Gelesen“ wird bei bereits bewerteten Büchern ausgeblendet.
+*Persönlicher Zähler „Gelesene Bücher 2026“ in der Sidebar implementiert.
+*Leserundenansicht für Mitglieder erweitert und verbessert.
+*Grundlage für zukünftige Funktionen wie Durchschnittsbewertungen und Review-Anzeige geschaffen.
+
+### Screenshot
+
+![Aktuelle Leserunde](images/ansicht_aktuelleLeserunde_update.png)

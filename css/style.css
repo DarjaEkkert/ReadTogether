@@ -103,7 +103,7 @@ img {
   margin-top: 5px;
 }
 
-.actions button {
+.icon-btn  {
   background: transparent;
   color: #666;
 }
@@ -211,4 +211,28 @@ img {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+.rating-stars {
+    font-size: 28px;
+    cursor: pointer;
+    user-select: none;
+    margin: 10px 0;
+}
+
+.star-active {
+    color: gold;
+}
+
+.star-inactive {
+    color: lightgray;
+}
+
+#reviewsaveMessage {
+    color: green;
+    font-weight: bold;
+    }
+    
+.book-read {
+    opacity: 0.5;
 }

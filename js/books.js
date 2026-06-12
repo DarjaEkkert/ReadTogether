@@ -1,31 +1,56 @@
 let books = [];
+let reviews = [];
 let editingBookId = null;
 
 //Buch anzeigen
 async function loadBooks() {
 
-  const {
-    data: { user }
-  } = await supabaseClient.auth.getUser();
+    const {
+        data: { user }
+    } = await supabaseClient.auth.getUser();
 
-  if (!user) {
-    books = [];
+    if (!user) {
+
+        books = [];
+        reviews = [];
+
+        renderBooks();
+
+        return;
+    }
+
+    const { data: booksData, error: booksError } =
+        await supabaseClient
+            .from("books")
+            .select("*")
+            .order("created_at", { ascending: false });
+
+    if (booksError) {
+
+        console.error(booksError);
+
+        return;
+    }
+
+    const { data: reviewsData, error: reviewsError } =
+        await supabaseClient
+            .from("book_reviews")
+            .select("*")
+            .eq("user_id", user.id);
+
+    if (reviewsError) {
+
+        console.error(reviewsError);
+
+        return;
+    }
+
+    books = booksData;
+    reviews = reviewsData;
+
+    document.getElementById("booksRead").textContent = `Gelesene Bücher 2026: ${reviews.length}`;
+
     renderBooks();
-    return;
-  }
-
-  const { data, error } = await supabaseClient
-    .from("books")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-  console.log("Geladene Bücher:", data);
-  books = data;
-  renderBooks();
 }
 
 
@@ -175,29 +200,100 @@ function editBook(id) {
 
 function renderBooks() {
   const list = document.getElementById("list");
-  list.innerHTML = "";
+  const role = document.getElementById("userRole").textContent;
+  console.log("ROLE:", role);
+    list.innerHTML = "";
 
   books.forEach(b => {
+
+    const alreadyRead = reviews.some(r => r.book_id === b.id);
+    console.log( b.title, alreadyRead);
     const div = document.createElement("div");
     div.className = "book";
+
+    if (alreadyRead) {
+        div.classList.add("book-read");
+    }
     console.log(b.id);
+    let actions = "";
+    console.log("ROLE:", role);
+    if (role === "Administrator") {
+
+    actions = `
+        <button id="readButton-${b.id}" onclick="markAsRead('${b.id}')"> Gelesen </button>
+        <button onclick="editBook('${b.id}')">Ändern</button>
+        <button onclick="deleteBook('${b.id}')">Löschen</button>
+    `;
+
+} else {
+
+    if (alreadyRead) {
+
+        actions = "";
+
+    } else {
+
+        actions = `
+            <button
+                id="readButton-${b.id}"
+                onclick="markAsRead('${b.id}')">
+
+                Gelesen
+
+            </button>
+        `;
+    }
+}
     div.innerHTML = `
         ${b.cover_url ? `<img src="${b.cover_url}" />` : ""}
       <div class="book-content">
         <div class="book-title">${b.title}</div>
         <div class="book-author">by ${b.author}</div>
 
-        <div class="rating">⭐ ${b.rating}</div>
+    <div class="actions">
+        ${actions}
+    </div>
 
-        <div class="review">${b.review || ""}</div>
+    <div id="readForm-${b.id}"
+     class="read-form"
+     style="display:none;">
 
-        <div class="actions">
-            <button onclick="editBook('${b.id}')">✏️</button>
-            <button onclick="deleteBook('${b.id}')">🗑️</button>
-        </div>
+    <input
+        type="date"
+        id="readDate-${b.id}">
+
+    <div class="rating-stars"
+      id="rating-${b.id}">
+
+        <span class="star-inactive">☆</span>
+        <span class="star-inactive">☆</span>
+        <span class="star-inactive">☆</span>
+        <span class="star-inactive">☆</span>
+        <span class="star-inactive">☆</span>
+
+    </div>
+
+    <textarea
+        id="review-${b.id}"
+        placeholder="Deine Meinung zum Buch">
+    </textarea>
+
+    <button onclick="saveReview('${b.id}')">
+        Speichern
+    </button>
+
+  </div>
       </div>
     `;
 
     list.appendChild(div);
   });
+
+
+    initRatings();
+}
+function markAsRead(bookId) {
+
+    console.log("Gelesen:", bookId);
+
 }
