@@ -60,8 +60,7 @@ button:hover {
 
 
 .book {
-  display: flex;
-  width: 100%;
+  width: 220px;
   box-sizing: border-box;
   gap: 15px;
   background: #ffffff;
@@ -206,4 +205,10 @@ img {
     font-size: 14px;
     color: #666;
     margin-bottom: 15px;
+}
+
+#list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }

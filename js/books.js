@@ -17,14 +17,13 @@ async function loadBooks() {
   const { data, error } = await supabaseClient
     .from("books")
     .select("*")
-    .eq("user_id", user.id)
     .order("created_at", { ascending: false });
 
   if (error) {
     console.error(error);
     return;
   }
-
+  console.log("Geladene Bücher:", data);
   books = data;
   renderBooks();
 }
@@ -36,28 +35,27 @@ function addBook() {
 
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
-  const review = document.getElementById("review").value;
-  const rating = document.getElementById("rating").value;
+  const readingDeadline = document.getElementById("readingDeadline").value;
 
   if (!title || !author) return;
 
   if (file) {
     const reader = new FileReader();
     reader.onload = function(e) {
-      saveBook(title, author, review, rating, e.target.result);
+      saveBook(title, author, readingDeadline, e.target.result);
     };
     reader.readAsDataURL(file);
   } else {
-    saveBook(title, author, review, rating, "");
+    saveBook(title, author, readingDeadline, "");
   }
 
   document.getElementById("title").value = "";
   document.getElementById("author").value = "";
-  document.getElementById("review").value = "";
+  document.getElementById("readingDeadline").value = "";
   document.getElementById("coverFile").value = "";
 }
 //Buch hinzufügen
-async function saveBook(title, author, review, rating, coverData) {
+async function saveBook(title, author,readingDeadline, coverData) {
     if (editingBookId) {
 
         const { error } = await supabaseClient
@@ -65,8 +63,7 @@ async function saveBook(title, author, review, rating, coverData) {
             .update({
                 title: title,
                 author: author,
-                review: review,
-                rating: parseInt(rating)
+                reading_deadline: readingDeadline
             })
             .eq("id", editingBookId);
 
@@ -83,9 +80,7 @@ async function saveBook(title, author, review, rating, coverData) {
 
         await loadBooks();
 
-        
-
-        return;
+       return;
     }
 
     let coverUrl = "";
@@ -116,28 +111,27 @@ async function saveBook(title, author, review, rating, coverData) {
     coverUrl = data.publicUrl;
     }
     const {
-  data: { user }
-} = await supabaseClient.auth.getUser();
-  const { data, error } = await supabaseClient
-    .from("books")
-    .insert([
+      data: { user }
+      } = await supabaseClient.auth.getUser();
+        const { data, error } = await supabaseClient
+          .from("books")
+          .insert([
       {
         title: title,
         author: author,
-        review: review,
-        rating: parseInt(rating),
+        reading_deadline: readingDeadline,
         cover_url: coverUrl,
         user_id: user.id
       }
     ]);
 
-  if (error) {
-    console.error(error);
-    alert("Fehler beim Speichern");
-    return;
-  }
+      if (error) {
+        console.error(error);
+        alert("Fehler beim Speichern");
+        return;
+      }
 
-  await loadBooks();
+    await loadBooks();
   
 }
 

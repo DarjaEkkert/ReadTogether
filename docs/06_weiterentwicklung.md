@@ -232,3 +232,27 @@ Die Anwendung wurde von einer Cloud-Anwendung mit gemeinsamer Datenhaltung zu ei
 
 ### Ergänzung
 Im Rahmen der Weiterentwicklung wurde die Benutzeroberfläche für Benutzerprofile vorbereitet. Nach dem Login erscheint eine feste Sidebar auf der linken Seite. Diese enthält einen Avatarbereich, Benutzerinformationen, Lesestatistiken sowie die Logout-Funktion. Der Hauptbereich wurde von der Navigation getrennt und bildet die Grundlage für zukünftige Profilfunktionen.
+
+##Version 9 – Gemeinsame Leserunde
+
+In dieser Version wurde die bisherige persönliche Bücherliste zu einer gemeinsamen Leserunde für alle Mitglieder des Buchclubs weiterentwickelt.
+
+###Die wichtigsten Änderungen:
+
+*Einführung eines Datums „Lesen bis“ beim Anlegen eines Buches.
+*Alle Mitglieder sehen nun dieselbe aktuelle Leserunde.
+*Die Bücher werden als Karten mit Coverbild dargestellt und nicht mehr als einfache Liste.
+*Neue Bücher werden automatisch auch in der Cover-Slideshow angezeigt.
+*Einführung einer Rollenanzeige im Profilbereich (Administrator oder Mitglied).
+*Verbesserung der Profilnavigation durch einen „Zurück zu meinen Büchern“-Button.
+*Korrektur verschiedener Darstellungs- und Rollenfehler.
+
+##Aktueller Stand:
+
+*Administrator kann Bücher für die Leserunde anlegen.
+*Mitglieder sehen dieselben Bücher wie der Administrator.
+*Grundlage für die spätere Funktion „Gelesen markieren“, Bewertungen und Rezensionen wurde geschaffen.
+
+### Screenshot
+
+![Aktuelle Leserunde](images/ansicht_aktuelleLeserunde.png)
