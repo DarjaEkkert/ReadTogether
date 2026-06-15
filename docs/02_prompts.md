@@ -187,3 +187,32 @@ Requirements:
 ### Ergebnis
 
 Änderungen (Bewertungen, Lesestatus) werden nun sofort angezeigt, ohne erneutes Laden der Seite.
+
+
+*****
+## Version 9.2 – Bewertungen und Rezensionen anzeigen (GPT)
+
+Die Anwendung besitzt bereits eine Tabelle book_reviews, in der Bewertungen und Rezensionen gespeichert werden.
+
+Erweitere die bestehende ReadTogether-App um folgende Funktionen:
+
+Durchschnittsbewertung pro Buch berechnen
+Anzahl der Bewertungen anzeigen
+Rezensionen aller Mitglieder anzeigen
+Benutzernamen statt Benutzer-IDs darstellen
+Bestehende Funktionen nicht verändern
+
+Verwende die vorhandenen Tabellen:
+
+books
+book_reviews
+profiles
+
+Berücksichtige die bestehenden Supabase-Richtlinien und passe diese bei Bedarf an.
+
+Ergebnis
+Durchschnittsbewertung wird auf jeder Buchkarte angezeigt.
+Anzahl der Bewertungen wird angezeigt.
+Rezensionen können direkt auf der Buchkarte angezeigt werden.
+Benutzernamen werden aus der Tabelle profiles geladen.
+Die RLS-Richtlinien der Tabelle profiles wurden angepasst, damit öffentliche Profilinformationen für alle Mitglieder sichtbar sind.

@@ -1,5 +1,7 @@
 let books = [];
 let reviews = [];
+let allReviews = [];
+let profiles = [];
 let editingBookId = null;
 
 //Buch anzeigen
@@ -38,6 +40,30 @@ async function loadBooks() {
             .select("*")
             .eq("user_id", user.id);
 
+    const { data: allReviewsData, error: allReviewsError } =
+        await supabaseClient
+            .from("book_reviews")
+            .select("*");
+
+    const { data: profilesData, error: profilesError } =
+        await supabaseClient
+            .from("profiles")
+            .select("id, username");
+
+    if (profilesError) {
+
+        console.error(profilesError);
+
+        return;
+}
+
+if (allReviewsError) {
+
+    console.error(allReviewsError);
+
+    return;
+}
+
     if (reviewsError) {
 
         console.error(reviewsError);
@@ -47,7 +73,9 @@ async function loadBooks() {
 
     books = booksData;
     reviews = reviewsData;
-
+    allReviews = allReviewsData;
+    profiles = profilesData;
+  
     document.getElementById("booksRead").textContent = `Gelesene Bücher 2026: ${reviews.length}`;
 
     renderBooks();
@@ -162,10 +190,7 @@ async function saveBook(title, author,readingDeadline, coverData) {
 
 async function deleteBook(id) {
 
-  console.log("Lösche Buch:", id);
-  console.log("Typ:", typeof id);
-
-  const { error } = await supabaseClient
+    const { error } = await supabaseClient
     .from("books")
     .delete()
     .eq("id", id);
@@ -176,8 +201,7 @@ async function deleteBook(id) {
     return;
   }
 
-  console.log("Gelöscht");
-
+ 
   await loadBooks();
 }
 
@@ -201,23 +225,47 @@ function editBook(id) {
 function renderBooks() {
   const list = document.getElementById("list");
   const role = document.getElementById("userRole").textContent;
-  console.log("ROLE:", role);
-    list.innerHTML = "";
+      list.innerHTML = "";
 
   books.forEach(b => {
 
     const alreadyRead = reviews.some(r => r.book_id === b.id);
-    console.log( b.title, alreadyRead);
     const div = document.createElement("div");
     div.className = "book";
+
+    const bookReviews = allReviews.filter(r => r.book_id === b.id);
+
+    const reviewCount = bookReviews.length;
+
+    const reviewsHtml = bookReviews.map(review => {
+    const profile = profiles.find(p => p.id === review.user_id);
+        
+    const username =
+        profile?.username || "Unbekannt";
+
+    const stars = "★".repeat(review.rating);
+
+    return `
+        <div class="single-review">
+            <strong>${username}</strong> ${stars}
+            <br>
+            ${review.review || ""}
+            </div>
+        `;
+    }).join("");
+
+    const averageRating =
+        reviewCount > 0
+            ? (bookReviews.reduce(
+                (sum, r) => sum + Number(r.rating), 0
+            ) / reviewCount).toFixed(1)
+            : "-";
 
     if (alreadyRead) {
         div.classList.add("book-read");
     }
-    console.log(b.id);
-    let actions = "";
-    console.log("ROLE:", role);
-    if (role === "Administrator") {
+       let actions = "";
+      if (role === "Administrator") {
 
     actions = `
         <button id="readButton-${b.id}" onclick="markAsRead('${b.id}')"> Gelesen </button>
@@ -249,6 +297,25 @@ function renderBooks() {
       <div class="book-content">
         <div class="book-title">${b.title}</div>
         <div class="book-author">by ${b.author}</div>
+        <div class="book-rating">
+         ⭐ ${averageRating}
+         (${reviewCount} Bewertungen)
+        </div>
+
+    <button
+    onclick="toggleReviews('${b.id}')">
+
+    💬 Reviews anzeigen
+
+    </button>
+
+    <div
+    id="reviews-${b.id}"
+    style="display:none; margin-top:10px;">
+
+    ${reviewsHtml}
+
+    </div>
 
     <div class="actions">
         ${actions}
@@ -294,6 +361,19 @@ function renderBooks() {
 }
 function markAsRead(bookId) {
 
-    console.log("Gelesen:", bookId);
+    }
 
+//Alle Reviews anzeigen
+function toggleReviews(bookId) {
+
+    const area = document.getElementById(`reviews-${bookId}`);
+
+    if (area.style.display === "none") {
+
+        area.style.display = "block";
+
+    } else {
+
+        area.style.display = "none";
+    }
 }

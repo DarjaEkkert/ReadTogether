@@ -275,3 +275,30 @@ In dieser Version wurde die bisherige persönliche Bücherliste zu einer gemeins
 ### Screenshot
 
 ![Aktuelle Leserunde](images/ansicht_aktuelleLeserunde_update.png)
+
+## Version 9.2 – Bewertungen und Rezensionen anzeigen
+
+In dieser Version wurde das Bewertungssystem erweitert.
+
+### Neue Funktionen
+
+* Durchschnittliche Sternebewertung pro Buch wird angezeigt.
+* Anzahl der Bewertungen wird angezeigt.
+* Rezensionen aller Mitglieder können angezeigt werden.
+* Benutzernamen werden bei den Rezensionen dargestellt.
+
+### Technische Umsetzung
+
+Die Bewertungen werden aus der Tabelle `book_reviews` geladen und für jedes Buch ausgewertet.
+
+Zusätzlich werden die Benutzernamen aus der Tabelle `profiles` geladen und den jeweiligen Rezensionen zugeordnet.
+
+Während der Entwicklung musste die Row-Level-Security von Supabase angepasst werden, damit die öffentlichen Profilinformationen anderer Mitglieder gelesen werden können.
+
+### Ergebnis
+
+Mitglieder können nun die Bewertungen und Meinungen anderer Leser sehen. Dadurch wird die Leserunde interaktiver und die Anwendung entwickelt sich weiter zu einer echten Buchclub-App.
+
+### Screenshot
+
+![Bewertungen und Rezensionen](images/ansicht_reviews.png)
