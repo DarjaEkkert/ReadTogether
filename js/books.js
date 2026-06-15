@@ -236,12 +236,19 @@ function renderBooks() {
     const bookReviews = allReviews.filter(r => r.book_id === b.id);
 
     const reviewCount = bookReviews.length;
+    const readerCount = bookReviews.length;
 
     const reviewsHtml = bookReviews.map(review => {
     const profile = profiles.find(p => p.id === review.user_id);
         
-    const username =
-        profile?.username || "Unbekannt";
+    const username = profile?.username || "Unbekannt";
+
+    const fullReview = review.review || "";
+
+    const shortReview =
+        fullReview.length > 100
+            ? fullReview.substring(0, 100) + "..."
+            : fullReview;
 
     const stars = "★".repeat(review.rating);
 
@@ -249,7 +256,7 @@ function renderBooks() {
         <div class="single-review">
             <strong>${username}</strong> ${stars}
             <br>
-            ${review.review || ""}
+            ${shortReview}
             </div>
         `;
     }).join("");
@@ -298,14 +305,18 @@ function renderBooks() {
         <div class="book-title">${b.title}</div>
         <div class="book-author">by ${b.author}</div>
         <div class="book-rating">
-         ⭐ ${averageRating}
-         (${reviewCount} Bewertungen)
+            ⭐ ${averageRating}
+            (${reviewCount} Bewertungen)
+        </div>
+        <div class="book-readers">
+            👥 ${readerCount} Leser
         </div>
 
     <button
-    onclick="toggleReviews('${b.id}')">
+        id="reviewButton-${b.id}"
+        onclick="toggleReviews('${b.id}')">
 
-    💬 Reviews anzeigen
+        💬 Reviews anzeigen
 
     </button>
 
@@ -366,14 +377,20 @@ function markAsRead(bookId) {
 //Alle Reviews anzeigen
 function toggleReviews(bookId) {
 
-    const area = document.getElementById(`reviews-${bookId}`);
+    const area =
+        document.getElementById(`reviews-${bookId}`);
+
+    const button =
+        document.getElementById(`reviewButton-${bookId}`);
 
     if (area.style.display === "none") {
 
         area.style.display = "block";
+        button.textContent = "💬 Reviews ausblenden";
 
     } else {
 
         area.style.display = "none";
+        button.textContent = "💬 Reviews anzeigen";
     }
 }

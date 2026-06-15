@@ -302,3 +302,21 @@ Mitglieder können nun die Bewertungen und Meinungen anderer Leser sehen. Dadurc
 ### Screenshot
 
 ![Bewertungen und Rezensionen](images/ansicht_reviews.png)
+
+## Version 9.3 – Leserstatistik
+
+Die Leserundenansicht wurde um zusätzliche Informationen erweitert.
+
+### Neue Funktionen
+
+* Anzeige der Anzahl der Leser pro Buch
+* Umschaltbarer Button für Rezensionen („Reviews anzeigen“ / „Reviews ausblenden“)
+* Lange Rezensionen werden automatisch gekürzt dargestellt
+
+### Ergebnis
+
+Mitglieder sehen nun auf einen Blick, wie viele Personen ein Buch bereits gelesen haben. Die Buchkarten enthalten mehr Informationen, bleiben aber weiterhin übersichtlich.
+
+### Screenshot
+
+![Leserstatistik](images/ansicht_leserstatistik.png)

@@ -216,3 +216,17 @@ Anzahl der Bewertungen wird angezeigt.
 Rezensionen können direkt auf der Buchkarte angezeigt werden.
 Benutzernamen werden aus der Tabelle profiles geladen.
 Die RLS-Richtlinien der Tabelle profiles wurden angepasst, damit öffentliche Profilinformationen für alle Mitglieder sichtbar sind.
+
+## Version 9.3 – Leserstatistik
+
+"können wir noch schnell machen das lange bewertungen gekürzt werden"
+
+"button "Reviews anzeigen" zeigt und versteckt Reviews schon. lass es dabei in "Reviews ausblenden" unbennenen"
+
+"jetzt anzahl mitglieder die es gelesen haben anzeigen"
+
+### Ergebnis
+
+* Lange Rezensionen werden automatisch gekürzt dargestellt.
+* Der Button wechselt zwischen „Reviews anzeigen“ und „Reviews ausblenden“.
+* Die Anzahl der Leser wird direkt auf der Buchkarte angezeigt.
