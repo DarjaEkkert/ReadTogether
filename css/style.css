@@ -117,20 +117,18 @@ img {
 
 #sidebar {
     width: 220px;
-    overflow-y: auto;
     background-color: #d8d0ca;
-
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
     padding: 30px;
+    box-sizing: border-box;
 }
 
 #sidebarBottom {
     display: flex;
     flex-direction: column;
     gap: 12px;
+
 }
 
 #logoutBtn {
@@ -139,6 +137,11 @@ img {
 }
 
 #profileBtn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#adminToggleBtn {
     width: 100%;
     margin-bottom: 10px;
 }

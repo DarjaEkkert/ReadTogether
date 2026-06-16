@@ -320,3 +320,22 @@ Mitglieder sehen nun auf einen Blick, wie viele Personen ein Buch bereits gelese
 ### Screenshot
 
 ![Leserstatistik](images/ansicht_leserstatistik.png)
+
+## Version 9.4 – Admin-Menü
+
+Die Administrationsfunktionen wurden in die Sidebar integriert.
+
+### Neue Funktionen
+
+* Administrationsbutton in der Sidebar hinzugefügt
+* Button nur für Administratoren sichtbar
+* Admin-Bereich kann ein- und ausgeblendet werden
+* Formular zum Hinzufügen von Büchern wird nur bei Bedarf angezeigt
+
+### Ergebnis
+
+Die Oberfläche wurde übersichtlicher gestaltet. Das Formular zum Verwalten der Leserunde ist nicht mehr dauerhaft sichtbar und kann über den Administrationsbutton geöffnet oder geschlossen werden.
+
+### Screenshot
+
+![Admin-Menü](images/admin_menu.png)

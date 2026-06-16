@@ -230,3 +230,20 @@ Die RLS-Richtlinien der Tabelle profiles wurden angepasst, damit öffentliche Pr
 * Lange Rezensionen werden automatisch gekürzt dargestellt.
 * Der Button wechselt zwischen „Reviews anzeigen“ und „Reviews ausblenden“.
 * Die Anzahl der Leser wird direkt auf der Buchkarte angezeigt.
+
+## Version 9.4 – Admin-Menü
+
+"wollen wir admin menü verstecken?"
+
+"button soll direkt unter Gelesene Bücher angezeigt werden"
+
+"wir wollen jetzt auf und zuklappfunktion machen"
+
+"Admin Bereich und Formular sollen gemeinsam angezeigt und versteckt werden"
+
+### Ergebnis
+
+* Administrationsbutton in die Sidebar verschoben
+* Nur für Administratoren sichtbar
+* Admin-Bereich kann ein- und ausgeklappt werden
+* Formular wird nur bei Bedarf angezeigt

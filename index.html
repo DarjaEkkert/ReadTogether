@@ -22,12 +22,19 @@
 
         <p id="booksRead"> Gelesene Bücher 2026: 0 </p>
 
+        <button id="adminToggleBtn"
+                onclick="toggleAdminPanel()"
+                style="display:none;">
+            Administration
+        </button>
+
     </div>
 
     <div id="sidebarBottom">
                      <button id="profileBtn" onclick="showProfile()"  style="display:none;">
                     My Profile
                      </button>
+
         <button id="logoutBtn"
                 onclick="logoutUser()"
                 style="display:none;">
@@ -127,16 +134,10 @@
     <h2>Admin Bereich</h2>
 
     <p>
-        Du kannst Bücher für den Buchclub verwalten.
+        Bücher für den Buchclub verwalten.
     </p>
 
-</div>
-
-  <div id="bookSection" style="display:none;">
-  <h2>📚 Aktuelle Leserunde</h2>
-  
-
-  <div id="adminBookForm" class="form">
+    <div id="adminBookForm" class="form" style="display:none;">
     <input id="title" placeholder="Title">
     <input id="author" placeholder="Author">
     <input type="file" id="coverFile" accept="image/*">
@@ -144,6 +145,14 @@
 
     <button onclick="addBook()">Add Book</button>
   </div>
+
+</div>
+
+  <div id="bookSection" style="display:none;">
+  <h2>📚 Aktuelle Leserunde</h2>
+  
+
+
   <div id="reviewsaveMessage"></div>
   <div id="list"></div>
 </div>

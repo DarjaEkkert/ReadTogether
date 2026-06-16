@@ -61,12 +61,8 @@ async function registerUser() {
 //Login
 async function loginUser() {
 
-    const email =
-        document.getElementById("email").value;
-
-    const password =
-        document.getElementById("password").value;
-
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
     const { data, error } =
         await supabaseClient.auth.signInWithPassword({
             email,
@@ -85,11 +81,9 @@ async function loginUser() {
     if (role === "admin") {
 
         document.getElementById("adminPanel").style.display = "block";
-
-        document.getElementById("adminBookForm").style.display = "block";
+        document.getElementById("adminToggleBtn").style.display = "block";
     }else {
-
-    document.getElementById("adminBookForm").style.display = "none";
+        document.getElementById("adminBookForm").style.display = "none";
     }
     const userName = profile?.username || data.user.email.split("@")[0];
     const avatar = profile?.avatar || "avatar1";
@@ -104,7 +98,7 @@ async function loginUser() {
     const roleText = role === "admin"
     ? "Administrator"
     : "Mitglied";
-console.log(document.getElementById("userRole"));
+
     document.getElementById("userRole").textContent = roleText;
 
     document.getElementById("welcomeMessage").textContent =
@@ -125,10 +119,9 @@ console.log(document.getElementById("userRole"));
     document.getElementById("logoutBtn").style.display = "block";
     document.getElementById("bookSection").style.display = "block";
     document.getElementById("coverSlider").style.display = "none";
-    console.log("Vor loadBooks");
-    await loadBooks();
-    console.log("Nach loadBooks");
     
+    await loadBooks();
+        
 }
 
 //Logout
@@ -175,6 +168,7 @@ function updateAdminPanel(role) {
 
     document.getElementById("adminPanel").style.display = display;
     document.getElementById("adminBookForm").style.display = display;
+    document.getElementById("adminToggleBtn").style.display = "block";
 }
 
 //Name und Avatar anzeigen
@@ -329,6 +323,7 @@ async function saveProfile() {
         }, 10000);
 }
 
+//MyProfile Menü schließen
 function closeProfile() {
 
     document.getElementById("profileSection").style.display = "none";
@@ -339,5 +334,23 @@ function closeProfile() {
 
     if (role === "Administrator") {
         document.getElementById("adminPanel").style.display = "block";
+    }
+}
+//Admin Menü schließen/Anzeigen
+function toggleAdminPanel() {
+
+    const form = document.getElementById("adminPanel");
+
+    const button = document.getElementById("adminToggleBtn");
+
+    if (form.style.display === "none") {
+
+        form.style.display = "block";
+        button.textContent = "Administration schließen";
+
+    } else {
+
+        form.style.display = "none";
+        button.textContent = "Administration";
     }
 }
