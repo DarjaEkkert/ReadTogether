@@ -129,7 +129,7 @@
 
 </div>
 
-<div id="adminPanel" style="display:none;">
+<div id="adminPanel" class="form">
 
     <h2>Admin Bereich</h2>
 
@@ -180,11 +180,14 @@
 
 </div>
 
-    <div id="adminBookForm" class="form" style="display:none;">
+    <div id="adminBookForm" class="form" >
     <input id="title" placeholder="Title">
     <input id="author" placeholder="Author">
     <input type="file" id="coverFile" accept="image/*">
-    <input type="date" id="readingDeadline">
+    <label for="readingRoundSelect">
+            Leserunde
+    </label>
+    <select id="readingRoundSelect"></select>
 
     <button onclick="addBook()">Add Book</button>
   </div>
@@ -194,6 +197,7 @@
   <div id="bookSection" style="display:none;">
   <h2>📚 Aktuelle Leserunde</h2>
   
+  <div id="currentReadingRoundInfo"></div>
 
 
   <div id="reviewsaveMessage"></div>

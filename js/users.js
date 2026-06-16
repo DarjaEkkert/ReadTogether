@@ -164,11 +164,19 @@ async function logoutUser() {
 //Steuerung adminPanel anhang von rolle
 function updateAdminPanel(role) {
 
-    const display = role === "admin" ? "block" : "none";
+    if (role === "admin") {
 
-    document.getElementById("adminPanel").style.display = display;
-    document.getElementById("adminBookForm").style.display = display;
-    document.getElementById("adminToggleBtn").style.display = "block";
+        document.getElementById("adminToggleBtn").style.display =
+            "block";
+
+    } else {
+
+        document.getElementById("adminToggleBtn").style.display =
+            "none";
+
+        document.getElementById("adminPanel").style.display =
+            "none";
+    }
 }
 
 //Name und Avatar anzeigen
@@ -247,6 +255,7 @@ async function checkUser() {
     }
 
     await loadBooks();
+    await loadReadingRounds();
 }
 
 

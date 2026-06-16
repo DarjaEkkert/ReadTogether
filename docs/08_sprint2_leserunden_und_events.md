@@ -70,3 +70,25 @@ Beim Anlegen einer neuen aktiven Leserunde werden vorhandene aktive Leserunden a
 ### Screenshot
 
 ![Leserundenverwaltung](images/leserundenverwaltung.png)
+
+## Version 10.1 – Bücher mit Leserunden verknüpfen
+
+Die Verwaltung der Leserunden wurde erweitert. Beim Anlegen eines Buches kann der Administrator nun auswählen, zu welcher Leserunde das Buch gehört.
+
+### Umgesetzte Funktionen
+
+* Dropdown-Liste mit allen vorhandenen Leserunden
+* Bücher werden einer konkreten Leserunde zugeordnet
+* Aktive Leserunde wird aus der Datenbank geladen
+* In der Ansicht „Aktuelle Leserunde“ werden nur Bücher der aktiven Leserunde angezeigt
+* Informationen zur aktiven Leserunde werden oberhalb der Buchliste dargestellt
+
+### Technische Umsetzung
+
+Die Tabelle `books` wurde über die Spalte `reading_round_id` mit der Tabelle `reading_rounds` verknüpft.
+
+Beim Laden der Bücher wird zunächst die aktive Leserunde ermittelt. Anschließend werden ausschließlich Bücher geladen, die dieser Leserunde zugeordnet sind.
+
+### Ergebnis
+
+Die Anwendung unterscheidet nun zwischen aktueller Leserunde und archivierten Leserunden. Dadurch wurde die Grundlage für die spätere Bibliothek geschaffen.

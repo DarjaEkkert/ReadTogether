@@ -268,3 +268,22 @@ Die RLS-Richtlinien der Tabelle profiles wurden angepasst, damit öffentliche Pr
 * Aktive Leserunde auswählbar
 * Automatische Deaktivierung bisheriger aktiver Leserunden
 * Grundlage für Bibliothek und Archiv geschaffen
+
+##Version 10.1 – Bücher mit Leserunden verknüpfen
+
+"ich will das admin möglichkeit hat beim buch hinzufügen leserunde auswählen"
+
+"machen wir variante a"
+
+"ich habe jetzt datenbank vorbereitet . 5 bücher in inaktive leserunde nummer 4 und 5 bücher in aktive leserunde"
+
+"machen wir"
+
+### Ergebnis
+
+* Dropdown zur Auswahl einer Leserunde im Buchformular ergänzt
+* Bücher werden über `reading_round_id` einer Leserunde zugeordnet
+* Aktive Leserunde wird automatisch aus der Datenbank geladen
+* Ansicht „Aktuelle Leserunde“ zeigt nur Bücher der aktiven Leserunde
+* Informationen zur aktiven Leserunde werden oberhalb der Buchliste angezeigt
+* Grundlage für die spätere Bibliothek geschaffen

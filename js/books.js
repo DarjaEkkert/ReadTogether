@@ -3,6 +3,7 @@ let reviews = [];
 let allReviews = [];
 let profiles = [];
 let editingBookId = null;
+let activeReadingRound = null;
 
 //Buch anzeigen
 async function loadBooks() {
@@ -10,6 +11,44 @@ async function loadBooks() {
     const {
         data: { user }
     } = await supabaseClient.auth.getUser();
+
+    const {
+        data: activeRound,
+        error: roundError
+    } = await supabaseClient
+        .from("reading_rounds")
+        .select("*")
+        .eq("is_active", true)
+        .single();
+
+    if (roundError) {
+
+        console.error(roundError);
+
+        return;
+    }
+
+activeReadingRound = activeRound;
+//Information über Aktive Leserunde
+document.getElementById("currentReadingRoundInfo").innerHTML = `
+    <div class="form">
+
+        <strong>
+            ${activeRound.year} Runde ${activeRound.round_number}
+        </strong>
+
+        <br>
+
+        Thema:
+        ${activeRound.theme}
+
+        <br>
+
+        Lesen bis:
+        ${activeRound.end_date}
+
+    </div>
+`;
 
     if (!user) {
 
@@ -25,6 +64,7 @@ async function loadBooks() {
         await supabaseClient
             .from("books")
             .select("*")
+            .eq("reading_round_id", activeRound.id) //bücher nur aktuelle runde laden
             .order("created_at", { ascending: false });
 
     if (booksError) {
@@ -88,27 +128,26 @@ function addBook() {
 
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
-  const readingDeadline = document.getElementById("readingDeadline").value;
-
+  
   if (!title || !author) return;
 
   if (file) {
     const reader = new FileReader();
     reader.onload = function(e) {
-      saveBook(title, author, readingDeadline, e.target.result);
+      saveBook(title, author, e.target.result);
     };
     reader.readAsDataURL(file);
   } else {
-    saveBook(title, author, readingDeadline, "");
+    saveBook(title, author, "");
   }
 
   document.getElementById("title").value = "";
   document.getElementById("author").value = "";
-  document.getElementById("readingDeadline").value = "";
   document.getElementById("coverFile").value = "";
 }
 //Buch hinzufügen
-async function saveBook(title, author,readingDeadline, coverData) {
+async function saveBook(title, author, coverData) {
+    const readingRoundId = document.getElementById("readingRoundSelect").value;
     if (editingBookId) {
 
         const { error } = await supabaseClient
@@ -116,7 +155,7 @@ async function saveBook(title, author,readingDeadline, coverData) {
             .update({
                 title: title,
                 author: author,
-                reading_deadline: readingDeadline
+                
             })
             .eq("id", editingBookId);
 
@@ -172,9 +211,9 @@ async function saveBook(title, author,readingDeadline, coverData) {
       {
         title: title,
         author: author,
-        reading_deadline: readingDeadline,
         cover_url: coverUrl,
-        user_id: user.id
+        user_id: user.id,
+        reading_round_id: readingRoundId
       }
     ]);
 
@@ -418,14 +457,14 @@ async function saveReadingRound() {
         await supabaseClient
             .from("reading_rounds")
             .insert([
-{
-    year: year,
-    round_number: roundNumber,
-    theme: theme,
-    end_date: endDate,
-    is_active: isActive
-}
-]);
+    {
+        year: year,
+        round_number: roundNumber,
+        theme: theme,
+        end_date: endDate,
+        is_active: isActive
+    }
+    ]);
 
     if (error) {
 
@@ -448,4 +487,37 @@ async function saveReadingRound() {
     setTimeout(() => {
         message.textContent = "";
     }, 5000);
+}
+
+//leserunden werden aus supabase geladen
+async function loadReadingRounds() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("reading_rounds")
+            .select("*")
+            .order("year", { ascending: false });
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    const select =
+        document.getElementById("readingRoundSelect");
+
+    select.innerHTML = "";
+
+    data.forEach(round => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = round.id;
+
+        option.textContent =
+            `${round.year} Runde ${round.round_number} - ${round.theme}`;
+
+        select.appendChild(option);
+    });
 }
