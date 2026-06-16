@@ -339,3 +339,6 @@ Die Oberfläche wurde übersichtlicher gestaltet. Das Formular zum Verwalten der
 ### Screenshot
 
 ![Admin-Menü](images/admin_menu.png)
+
+# Sprint 1 Fertig!
+

@@ -137,6 +137,49 @@
         Bücher für den Buchclub verwalten.
     </p>
 
+    <h3>Neue Leserunde</h3>
+
+<div id="readingRoundForm" class="form">
+
+    <input
+        type="number"
+        id="roundYear"
+        placeholder="Jahr">
+
+    <input
+        type="number"
+        id="roundNumber"
+        placeholder="Rundennummer">
+
+    <input
+        type="text"
+        id="roundTheme"
+        placeholder="Thema">
+
+    <input
+        type="date"
+        id="roundEndDate">
+
+    <div class="checkbox-row">
+
+    <input
+        type="checkbox"
+        id="roundActive">
+
+    <label for="roundActive">
+        Aktive Leserunde
+    </label>
+
+    </div>
+
+    <button onclick="saveReadingRound()">
+        Leserunde speichern
+    </button>
+
+    <div id="roundSaveMessage"></div>
+
+</div>
+
     <div id="adminBookForm" class="form" style="display:none;">
     <input id="title" placeholder="Title">
     <input id="author" placeholder="Author">

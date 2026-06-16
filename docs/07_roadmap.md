@@ -94,7 +94,7 @@ Jedes Buchclub-Mitglied erhält ein eigenes Benutzerkonto.
 
 \* \[x] Logout
 
-\* \[ ] Benutzerprofil
+\* \[x] Benutzerprofil
 
 
 
@@ -126,13 +126,13 @@ Mehrere Nutzer sollen dieselben Bücher bewerten und rezensieren können.
 
 
 
-\* \[ ] Bewertungen pro Nutzer speichern
+\* \[x] Bewertungen pro Nutzer speichern
 
-\* \[ ] Rezensionen pro Nutzer speichern
+\* \[x] Rezensionen pro Nutzer speichern
 
-\* \[ ] Durchschnittsbewertung berechnen
+\* \[x] Durchschnittsbewertung berechnen
 
-\* \[ ] Anzahl der Bewertungen anzeigen
+\* \[x] Anzahl der Bewertungen anzeigen
 
 
 
@@ -146,7 +146,7 @@ Die App bildet die Meinungen des gesamten Buchclubs ab.
 
 \---
 
-\## Version 5.0 – Monatsbuch und Leseziele
+\## Version 9.0 – Monatsbuch und Leseziele
 
 
 
@@ -162,11 +162,9 @@ Die Anwendung soll die gemeinsamen Buchclub-Treffen unterstützen.
 
 
 
-\- \[ ] Administrator kann Bücher des aktuellen Zeitraums festlegen
+\* \[x] Administrator kann Bücher des aktuellen Zeitraums festlegen
 
-\- \[ ] Sichtbarkeit von einem Datum bis zu einem Datum definieren
-
-\- \[ ] Bereich „Aktuelle Monatsbücher“
+\* \[x] Bereich „Aktuelle Monatsbücher“
 
 \- \[ ] Persönlicher Lesefortschritt des Nutzers
 

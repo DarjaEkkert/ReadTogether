@@ -241,6 +241,11 @@ async function checkUser() {
     updateProfileInfo(profile, user, role);
     showLoggedInView();
 
+    const roundYear = document.getElementById("roundYear"); //in menü leseround wird jahr automatisch auf aktuelle gesetzt
+    if (roundYear) {
+        roundYear.value = new Date().getFullYear();
+    }
+
     await loadBooks();
 }
 

@@ -247,3 +247,24 @@ Die RLS-Richtlinien der Tabelle profiles wurden angepasst, damit öffentliche Pr
 * Nur für Administratoren sichtbar
 * Admin-Bereich kann ein- und ausgeklappt werden
 * Formular wird nur bei Bedarf angezeigt
+
+## Version 10.0 – Verwaltung von Leserunden
+
+"wir machen jetzt an idee mit leserunden ran"
+
+"admin erstellt leserunde: jahr, nummer runde, thema, lesen bis"
+
+"danach ist nur diese bücher bleiben in aktuelle leserunde, alles weiteres liegt in archiv"
+
+"aktive leserunde checkbox hinzufügen"
+
+"es darf nur eine aktive leserunde gleichzeitig geben"
+
+### Ergebnis
+
+* Tabelle `reading_rounds` erstellt
+* Formular zum Anlegen von Leserunden integriert
+* Automatische Vorbelegung des aktuellen Jahres
+* Aktive Leserunde auswählbar
+* Automatische Deaktivierung bisheriger aktiver Leserunden
+* Grundlage für Bibliothek und Archiv geschaffen

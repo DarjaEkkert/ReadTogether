@@ -234,7 +234,25 @@ img {
     color: green;
     font-weight: bold;
     }
+
+#roundSaveMessage {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
     
 .book-read {
     opacity: 0.5;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: auto;
+    margin: 0;
 }
