@@ -155,7 +155,7 @@ async function logoutUser() {
     document.getElementById("profileSection").style.display = "none";
     document.getElementById("coverSlider").style.display = "block";
     document.getElementById("adminSection").style.display = "none";
-    document.getElementById("adminBookForm").style.display = "none";
+    
 
     books = [];
     renderBooks();
