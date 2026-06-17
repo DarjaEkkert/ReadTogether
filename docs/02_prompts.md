@@ -287,3 +287,23 @@ Die RLS-Richtlinien der Tabelle profiles wurden angepasst, damit öffentliche Pr
 * Ansicht „Aktuelle Leserunde“ zeigt nur Bücher der aktiven Leserunde
 * Informationen zur aktiven Leserunde werden oberhalb der Buchliste angezeigt
 * Grundlage für die spätere Bibliothek geschaffen
+
+##Version 10.2 – Bibliothek und Avatar-Galerie
+
+"ich will das jede runde im ausgeklappten zustand bücher so anzeigt wie aktuelle runde"
+
+"ich habe jetzt inzwischen 20 avatars erstellt. ich will das auswall nicht mehr über drop Down menüpassiert, sonden Mitglieder sehn, was sie auswählen"
+
+###Ergebnis
+*Bibliothek für vergangene Leserunden implementiert
+*Vergangene Leserunden werden aus der Tabelle reading_rounds geladen
+*Leserunden können einzeln aufgeklappt werden
+*Bücher werden über reading_round_id dynamisch geladen
+*Wiederverwendung der Funktion createBookCard() für aktuelle und archivierte Bücher
+*Einheitliche Darstellung aller Bücher in aktueller Leserunde und Bibliothek
+*Bewertungen, Leserzahlen und Rezensionen werden auch im Archiv angezeigt
+*Grafische Avatar-Galerie mit 20 Avataren integriert
+*Auswahl des Avatars per Mausklick
+*Markierung des aktuell ausgewählten Avatars
+*Speicherung des Avatars in der Tabelle profiles
+*Sofortige Aktualisierung des Avatars in Sidebar und Profilansicht

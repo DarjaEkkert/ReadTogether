@@ -1,3 +1,4 @@
+let selectedAvatar = "avatar1";
 //lädt das Profil des aktuell eingeloggten Benutzers aus der Tabelle profiles und gibt es als JavaScript-Objekt zurück.
 async function getProfile(userId) {
 
@@ -80,10 +81,11 @@ async function loginUser() {
     const role = profile?.role || "user";
     if (role === "admin") {
 
-        document.getElementById("adminPanel").style.display = "block";
+        document.getElementById("adminPanel").style.display = "none";
         document.getElementById("adminToggleBtn").style.display = "block";
     }else {
-        document.getElementById("adminBookForm").style.display = "none";
+        document.getElementById("adminToggleBtn").style.display ="none";
+        document.getElementById("adminPanel").style.display ="none";
     }
     const userName = profile?.username || data.user.email.split("@")[0];
     const avatar = profile?.avatar || "avatar1";
@@ -260,6 +262,45 @@ async function checkUser() {
 
 
 checkUser();
+//Avatars
+function loadAvatarSelection(currentAvatar) {
+
+    selectedAvatar = currentAvatar;
+
+    const container =
+        document.getElementById("avatarSelection");
+
+    container.innerHTML = "";
+
+    for (let i = 1; i <= 20; i++) {
+
+        const img =
+            document.createElement("img");
+
+        img.src =
+            `avatars/avatar${i}.png`;
+
+        img.className = "avatar-option";
+
+        if (`avatar${i}` === currentAvatar) {
+            img.classList.add("avatar-selected");
+        }
+
+        img.onclick = () => {
+
+            selectedAvatar = `avatar${i}`;
+
+            document
+                .querySelectorAll(".avatar-option")
+                .forEach(a =>
+                    a.classList.remove("avatar-selected"));
+
+            img.classList.add("avatar-selected");
+        };
+
+        container.appendChild(img);
+    }
+}
 
 //My Profil seite einzeigen
 
@@ -268,6 +309,7 @@ async function showProfile() {
     document.getElementById("bookSection").style.display = "none";
     document.getElementById("adminPanel").style.display = "none";
     document.getElementById("profileSection").style.display = "block";
+    document.getElementById("librarySection").style.display = "none";
 
     const {
         data: { user }
@@ -275,13 +317,11 @@ async function showProfile() {
 
     const profile = await getProfile(user.id);
 
-    document.getElementById("profileUsername").value =
-        profile?.username || "";
-
-    document.getElementById("profileBirthday").value =
-        profile?.birthday || "";
-    document.getElementById("profileAvatar").value =
-        profile?.avatar || "avatar1";
+    document.getElementById("profileUsername").value = profile?.username || "";
+    document.getElementById("profileBirthday").value = profile?.birthday || "";
+    loadAvatarSelection(
+        profile?.avatar || "avatar1"
+    );
 }
 
 // my Profil updaten
@@ -291,13 +331,9 @@ async function saveProfile() {
         data: { user }
     } = await supabaseClient.auth.getUser();
 
-    const username =
-        document.getElementById("profileUsername").value;
-
-    const birthday =
-        document.getElementById("profileBirthday").value;
-    const avatar =
-        document.getElementById("profileAvatar").value;
+    const username = document.getElementById("profileUsername").value;
+    const birthday = document.getElementById("profileBirthday").value;
+    const avatar = selectedAvatar;
 
     const { error } =
         await supabaseClient
@@ -342,6 +378,7 @@ function closeProfile() {
 
     document.getElementById("profileSection").style.display = "none";
     document.getElementById("bookSection").style.display = "block";
+    document.getElementById("librarySection").style.display = "block";
 
     const role =
         document.getElementById("userRole").textContent;

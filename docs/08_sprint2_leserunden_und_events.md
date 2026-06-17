@@ -92,3 +92,39 @@ Beim Laden der Bücher wird zunächst die aktive Leserunde ermittelt. Anschließ
 ### Ergebnis
 
 Die Anwendung unterscheidet nun zwischen aktueller Leserunde und archivierten Leserunden. Dadurch wurde die Grundlage für die spätere Bibliothek geschaffen.
+
+## Version 10.2 – Bibliothek und Avatar-Galerie
+
+Im weiteren Verlauf von Sprint 2 wurde die Trennung zwischen aktueller und vergangener Leserunde vollständig umgesetzt. Zusätzlich wurde die Benutzerverwaltung durch eine grafische Avatar-Auswahl erweitert.
+
+### Umgesetzte Funktionen
+
+* Bibliothek für vergangene Leserunden eingeführt
+* Vergangene Leserunden werden automatisch archiviert dargestellt
+* Leserunden können einzeln aufgeklappt werden
+* Bücher einer archivierten Leserunde werden dynamisch aus der Datenbank geladen
+* Einheitliche Darstellung von Büchern in aktueller Leserunde und Bibliothek
+* Grafische Avatar-Galerie mit 20 auswählbaren Avataren integriert
+* Ausgewählter Avatar wird im Benutzerprofil und in der Sidebar angezeigt
+* Avatar-Auswahl wird dauerhaft gespeichert
+
+### Technische Umsetzung
+
+Für die Bibliothek werden alle Leserunden geladen, deren Attribut `is_active` auf `false` gesetzt ist. Beim Öffnen einer Leserunde werden die zugehörigen Bücher über die Verknüpfung `reading_round_id` aus der Tabelle `books` geladen.
+
+Die bereits vorhandene Funktion `createBookCard()` wurde wiederverwendet, sodass aktuelle und archivierte Bücher dieselbe Darstellung besitzen. Dadurch konnten redundante Codeabschnitte vermieden werden.
+
+Die Avatar-Auswahl wurde von einer Dropdown-Liste auf eine visuelle Galerie umgestellt. Die Avatare werden dynamisch aus dem Ordner `avatars` geladen. Die Auswahl wird in der Tabelle `profiles` gespeichert und nach dem Speichern sofort in der Sidebar angezeigt.
+
+### Ergebnis
+
+Die Anwendung besitzt nun eine vollständige Trennung zwischen aktueller Leserunde und Archiv. Mitglieder können vergangene Leserunden einschließlich Bewertungen und Rezensionen einsehen.
+
+Zusätzlich wurde die Benutzerfreundlichkeit der Profilverwaltung durch die neue Avatar-Galerie deutlich verbessert.
+
+### Screenshot
+
+![Startseite mit aktueller Leserunde und Bibliothek](images/startseite_bibliothek.png)
+
+![Benutzerprofil mit Avatar-Galerie](images/avatar_galerie.png)
+

@@ -119,6 +119,7 @@ if (allReviewsError) {
     document.getElementById("booksRead").textContent = `Gelesene Bücher 2026: ${reviews.length}`;
 
     renderBooks();
+    await loadLibrary();
 }
 
 
@@ -261,27 +262,17 @@ function editBook(id) {
     "Save Changes";
 }
 
-function renderBooks() {
-  const list = document.getElementById("list");
-  const role = document.getElementById("userRole").textContent;
-      list.innerHTML = "";
-
-  books.forEach(b => {
+function createBookCard(b, role) {
 
     const alreadyRead = reviews.some(r => r.book_id === b.id);
     const div = document.createElement("div");
     div.className = "book";
-
     const bookReviews = allReviews.filter(r => r.book_id === b.id);
-
     const reviewCount = bookReviews.length;
     const readerCount = bookReviews.length;
-
     const reviewsHtml = bookReviews.map(review => {
-    const profile = profiles.find(p => p.id === review.user_id);
-        
+    const profile = profiles.find(p => p.id === review.user_id); 
     const username = profile?.username || "Unbekannt";
-
     const fullReview = review.review || "";
 
     const shortReview =
@@ -402,13 +393,25 @@ function renderBooks() {
   </div>
       </div>
     `;
+return div;
+}
 
-    list.appendChild(div);
-  });
 
+function renderBooks() {
+  const list = document.getElementById("list");
+  const role = document.getElementById("userRole").textContent;
+    list.innerHTML = "";
+
+  books.forEach(b => {
+        const div =
+            createBookCard(b, role);
+
+        list.appendChild(div);
+    });
 
     initRatings();
 }
+
 function markAsRead(bookId) {
 
     }
@@ -520,4 +523,99 @@ async function loadReadingRounds() {
 
         select.appendChild(option);
     });
+}
+// Bibliothek anzeigen
+async function loadLibrary() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("reading_rounds")
+            .select("*")
+            .eq("is_active", false)
+            .order("year", { ascending: false });
+
+    if (error) {
+
+        console.error(error);
+        return;
+    }
+
+    const library =
+        document.getElementById("libraryList");
+
+    library.innerHTML = "";
+
+    data.forEach(round => {
+
+        library.innerHTML += `
+            <div class="library-round">
+
+                <strong>
+                    ${round.year} Runde ${round.round_number}
+                </strong>
+
+                <br>
+
+                ${round.theme}
+
+                <br><br>
+
+                <button
+                    id="roundButton-${round.id}"
+                    onclick="toggleLibraryRound('${round.id}')">
+
+                    Bücher anzeigen
+
+                </button>
+
+                <div
+                    id="roundBooks-${round.id}"
+                    class="library-books"
+                    style="display:none;">
+                </div>
+
+            </div>
+        `;
+    });
+}
+
+async function toggleLibraryRound(roundId) {
+
+    const area = document.getElementById(`roundBooks-${roundId}`);
+    const button = document.getElementById(`roundButton-${roundId}`);
+
+    if (area.style.display === "none") {
+
+        const { data, error } =
+            await supabaseClient
+                .from("books")
+                .select("*")
+                .eq("reading_round_id", roundId);
+
+        if (error) {
+
+            console.error(error);
+            return;
+        }
+
+        area.innerHTML = "";
+
+        const role = document.getElementById("userRole").textContent;
+
+        data.forEach(book => {
+
+            const div =
+                createBookCard(book, role);
+
+            area.appendChild(div);
+        });
+
+        area.style.display = "flex";
+        button.textContent = "Bücher ausblenden";
+
+    } else {
+
+        area.style.display = "none";
+        button.textContent = "Bücher anzeigen";
+    }
 }
