@@ -81,11 +81,11 @@ async function loginUser() {
     const role = profile?.role || "user";
     if (role === "admin") {
 
-        document.getElementById("adminPanel").style.display = "none";
-        document.getElementById("adminToggleBtn").style.display = "block";
+        document.getElementById("adminSection").style.display = "none";
+        document.getElementById("adminBtn").style.display = "block";
     }else {
-        document.getElementById("adminToggleBtn").style.display ="none";
-        document.getElementById("adminPanel").style.display ="none";
+        document.getElementById("adminBtn").style.display ="none";
+        document.getElementById("adminSection").style.display ="none";
     }
     const userName = profile?.username || data.user.email.split("@")[0];
     const avatar = profile?.avatar || "avatar1";
@@ -154,7 +154,7 @@ async function logoutUser() {
     document.getElementById("bookSection").style.display = "none";
     document.getElementById("profileSection").style.display = "none";
     document.getElementById("coverSlider").style.display = "block";
-    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("adminSection").style.display = "none";
     document.getElementById("adminBookForm").style.display = "none";
 
     books = [];
@@ -168,15 +168,15 @@ function updateAdminPanel(role) {
 
     if (role === "admin") {
 
-        document.getElementById("adminToggleBtn").style.display =
+        document.getElementById("adminBtn").style.display =
             "block";
 
     } else {
 
-        document.getElementById("adminToggleBtn").style.display =
+        document.getElementById("adminBtn").style.display =
             "none";
 
-        document.getElementById("adminPanel").style.display =
+        document.getElementById("adminSection").style.display =
             "none";
     }
 }
@@ -307,7 +307,7 @@ function loadAvatarSelection(currentAvatar) {
 async function showProfile() {
 
     document.getElementById("bookSection").style.display = "none";
-    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("adminSection").style.display = "none";
     document.getElementById("profileSection").style.display = "block";
     document.getElementById("librarySection").style.display = "none";
 
@@ -379,29 +379,21 @@ function closeProfile() {
     document.getElementById("profileSection").style.display = "none";
     document.getElementById("bookSection").style.display = "block";
     document.getElementById("librarySection").style.display = "block";
-
-    const role =
-        document.getElementById("userRole").textContent;
-
-    if (role === "Administrator") {
-        document.getElementById("adminPanel").style.display = "block";
-    }
 }
-//Admin Menü schließen/Anzeigen
-function toggleAdminPanel() {
+//Adminseite anzeigen
+function showAdmin() {
 
-    const form = document.getElementById("adminPanel");
+    document.getElementById("bookSection").style.display = "none";
+    document.getElementById("librarySection").style.display = "none";
+    document.getElementById("profileSection").style.display = "none";
 
-    const button = document.getElementById("adminToggleBtn");
+    document.getElementById("adminSection").style.display = "block";
+}
+//Adminseite schlißen
+function closeAdmin() {
 
-    if (form.style.display === "none") {
+    document.getElementById("adminSection").style.display = "none";
 
-        form.style.display = "block";
-        button.textContent = "Administration schließen";
-
-    } else {
-
-        form.style.display = "none";
-        button.textContent = "Administration";
-    }
+    document.getElementById("bookSection").style.display = "block";
+    document.getElementById("librarySection").style.display = "block";
 }

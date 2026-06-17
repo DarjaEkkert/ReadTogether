@@ -307,3 +307,21 @@ Die RLS-Richtlinien der Tabelle profiles wurden angepasst, damit öffentliche Pr
 *Markierung des aktuell ausgewählten Avatars
 *Speicherung des Avatars in der Tabelle profiles
 *Sofortige Aktualisierung des Avatars in Sidebar und Profilansicht
+
+##Version 10.3 – Refactoring
+
+"ich habe dir jetzt alles geschickt. 
+
+so, meine gedanken jetzt.
+
+1. ganze Adminbereich mit buch und Rundenanlegen sollen wir so behandeln wie wir my Profile behandeln. also, separate seite mit eine button von Panel die nur für Admin sichtbar ist zugänglich
+
+2. klassen books und users ist inzwischen riesig und unverschtendlicher geworden. wir haben sehr viele wiederholungen. ich schlage vor, wir zerlegen die auf wietere klassen. evtl admin.js. profil.js, bibliothek.js, lesenrunden.js
+
+3. index.html soll aufgeräumt werden. da ist viel zuz viel verschachtelungen, was fehler ausrufen.
+
+4. und daswegen style.css hat jetzt auch mehrere widerhollungen und unsinvolle formatirungen. 
+
+
+
+bevor ReadTogether veröffentlicht wird brauchen wir große Refactoring "
