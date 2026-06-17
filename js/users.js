@@ -81,11 +81,9 @@ async function loginUser() {
     const role = profile?.role || "user";
     if (role === "admin") {
 
-        document.getElementById("adminSection").style.display = "none";
         document.getElementById("adminBtn").style.display = "block";
     }else {
         document.getElementById("adminBtn").style.display ="none";
-        document.getElementById("adminSection").style.display ="none";
     }
     const userName = profile?.username || data.user.email.split("@")[0];
     const avatar = profile?.avatar || "avatar1";
@@ -119,7 +117,7 @@ async function loginUser() {
     document.getElementById("logoutBtn").style.display = "inline-block";
     document.getElementById("sidebar").style.display = "flex";
     document.getElementById("logoutBtn").style.display = "block";
-    document.getElementById("bookSection").style.display = "block";
+    showView("homeView");
     document.getElementById("coverSlider").style.display = "none";
     
     await loadBooks();
@@ -151,7 +149,6 @@ async function logoutUser() {
     document.getElementById("welcomeMessage").textContent =
                                 "Lass uns lesen!";
     document.getElementById("sidebar").style.display = "none";
-    document.getElementById("bookSection").style.display = "none";
     document.getElementById("profileSection").style.display = "none";
     document.getElementById("coverSlider").style.display = "block";
     document.getElementById("adminSection").style.display = "none";
@@ -167,17 +164,11 @@ async function logoutUser() {
 function updateAdminPanel(role) {
 
     if (role === "admin") {
-
-        document.getElementById("adminBtn").style.display =
-            "block";
-
+        document.getElementById("adminBtn").style.display = "block";
     } else {
 
-        document.getElementById("adminBtn").style.display =
-            "none";
-
-        document.getElementById("adminSection").style.display =
-            "none";
+        document.getElementById("adminBtn").style.display = "none";
+        document.getElementById("adminSection").style.display = "none";
     }
 }
 
@@ -224,7 +215,7 @@ function showLoggedInView() {
     document.getElementById("logoutBtn").style.display = "inline-block";
 
     document.getElementById("sidebar").style.display = "flex";
-    document.getElementById("bookSection").style.display = "block";
+    showView("homeView");
 }
 //Verstecken Gast elements
 function hideGuestElements() {
@@ -306,10 +297,7 @@ function loadAvatarSelection(currentAvatar) {
 
 async function showProfile() {
 
-    document.getElementById("bookSection").style.display = "none";
-    document.getElementById("adminSection").style.display = "none";
-    document.getElementById("profileSection").style.display = "block";
-    document.getElementById("librarySection").style.display = "none";
+    showView("profileSection");
 
     const {
         data: { user }
@@ -376,24 +364,15 @@ async function saveProfile() {
 //MyProfile Menü schließen
 function closeProfile() {
 
-    document.getElementById("profileSection").style.display = "none";
-    document.getElementById("bookSection").style.display = "block";
-    document.getElementById("librarySection").style.display = "block";
+    showView("homeView");
 }
 //Adminseite anzeigen
 function showAdmin() {
 
-    document.getElementById("bookSection").style.display = "none";
-    document.getElementById("librarySection").style.display = "none";
-    document.getElementById("profileSection").style.display = "none";
-
-    document.getElementById("adminSection").style.display = "block";
+    showView("adminSection");
 }
 //Adminseite schlißen
 function closeAdmin() {
 
-    document.getElementById("adminSection").style.display = "none";
-
-    document.getElementById("bookSection").style.display = "block";
-    document.getElementById("librarySection").style.display = "block";
+    showView("homeView");
 }
