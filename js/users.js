@@ -135,6 +135,7 @@ async function logoutUser() {
     document.getElementById("profileSection").style.display = "none";
     document.getElementById("coverSlider").style.display = "block";
     document.getElementById("adminSection").style.display = "none";
+    document.getElementById("homeView").style.display = "none";
     
 
     books = [];
@@ -155,57 +156,8 @@ function updateAdminPanel(role) {
     }
 }
 
-//Name und Avatar anzeigen
-function updateProfileInfo(profile, user, role) {
 
-    const userName = profile?.username || user.email.split("@")[0];
-    const avatar = profile?.avatar || "avatar1";
 
-    const img = document.getElementById("avatarImage");
-
-    if (img) {
-        img.src = `avatars/${avatar}.png`;
-    }
-
-    document.getElementById("profileName").textContent = userName;
-
-    const roleText =
-    role === "admin"
-        ? "Administrator"
-        : "Mitglied";
-
-    const roleElement = document.getElementById("userRole");
-
-console.log("roleElement:", roleElement);
-
-if (roleElement) {
-    roleElement.textContent = roleText;
-}
-
-    document.getElementById("welcomeMessage").textContent =
-        `Ich freue mich, dass du da bist, ${userName}! Lass uns lesen!`;
-}
-//Anzeigesteuerung nach LOgin
-function showLoggedInView() {
-
-    document.getElementById("email").style.display = "none";
-    document.getElementById("password").style.display = "none";
-
-    document.getElementById("registerBtn").style.display = "none";
-    document.getElementById("loginBtn").style.display = "none";
-
-    document.getElementById("profileBtn").style.display = "inline-block";
-    document.getElementById("logoutBtn").style.display = "inline-block";
-
-    document.getElementById("sidebar").style.display = "flex";
-    showView("homeView");
-}
-//Verstecken Gast elements
-function hideGuestElements() {
-
-    document.getElementById("currentUser").textContent = "";
-    document.getElementById("coverSlider").style.display = "none";
-}
 //Benutzer eingelogt, anzeigen
 
 async function checkUser() {
