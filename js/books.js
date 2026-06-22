@@ -93,6 +93,7 @@ if (allReviewsError) {
     books = booksData;
     reviews = reviewsData;
     allReviews = allReviewsData;
+    profiles = profilesData;
     const remainingBooks = booksData.filter(book =>
     !reviewsData.some(review =>
         review.book_id === book.id

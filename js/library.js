@@ -3,10 +3,11 @@ async function loadLibrary() {
 
     const { data, error } =
         await supabaseClient
-            .from("reading_rounds")
-            .select("*")
-            .eq("is_active", false)
-            .order("year", { ascending: false });
+                .from("reading_rounds")
+                .select("*")
+                .eq("is_active", false)
+                .order("year", { ascending: false })
+                .order("round_number", { ascending: false });
 
     if (error) {
 
@@ -83,6 +84,8 @@ async function toggleLibraryRound(roundId) {
 
             area.appendChild(div);
         });
+
+        initRatings();
 
         area.style.display = "flex";
         button.textContent = "Bücher ausblenden";
