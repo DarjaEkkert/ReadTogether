@@ -1,6 +1,5 @@
 let books = [];
 let reviews = [];
-let library =[];
 let allReviews = [];
 let profiles = [];
 let editingBookId = null;
@@ -123,8 +122,6 @@ if (allReviewsError) {
     await loadLibrary();
 }
 
-
-
 function createBookCard(b, role) {
 
     const alreadyRead = reviews.some(r => r.book_id === b.id);
@@ -133,26 +130,7 @@ function createBookCard(b, role) {
     const bookReviews = allReviews.filter(r => r.book_id === b.id);
     const reviewCount = bookReviews.length;
     const readerCount = bookReviews.length;
-    const reviewsHtml = bookReviews.map(review => {
-    const profile = profiles.find(p => p.id === review.user_id); 
-    const username = profile?.username || "Unbekannt";
-    const fullReview = review.review || "";
-
-    const shortReview =
-        fullReview.length > 100
-            ? fullReview.substring(0, 100) + "..."
-            : fullReview;
-
-    const stars = "★".repeat(review.rating);
-
-    return `
-        <div class="single-review">
-            <strong>${username}</strong> ${stars}
-            <br>
-            ${shortReview}
-            </div>
-        `;
-    }).join("");
+    const reviewsHtml = createReviewsHtml(bookReviews);
 
     const averageRating =
         reviewCount > 0
@@ -259,6 +237,38 @@ function createBookCard(b, role) {
 return div;
 }
 
+function createReviewsHtml(bookReviews) {
+
+    return bookReviews.map(review => {
+
+        const profile =
+            profiles.find(
+                p => p.id === review.user_id
+            );
+
+        const username =
+            profile?.username || "Unbekannt";
+
+        const fullReview =
+            review.review || "";
+
+        const shortReview =
+            fullReview.length > 100
+                ? fullReview.substring(0, 100) + "..."
+                : fullReview;
+
+        const stars =
+            "★".repeat(review.rating);
+
+        return `
+            <div class="single-review">
+                <strong>${username}</strong> ${stars}
+                <br>
+                ${shortReview}
+            </div>
+        `;
+    }).join("");
+}
 
 function renderBooks() {
   const list = document.getElementById("list");
