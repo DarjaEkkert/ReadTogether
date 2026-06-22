@@ -63,4 +63,9 @@ message.textContent ="✓ Änderungen gespeichert!";
 setTimeout(() => { message.textContent = "";}, 5000);
 
 await loadBooks();
+
+for (const roundId of openedRounds) {
+
+    await toggleLibraryRound(roundId);
+}
 }

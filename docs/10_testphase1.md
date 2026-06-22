@@ -328,3 +328,67 @@ Ergebnis:
 
 \*Grundlegende Eingabevalidierung für neue Benutzer eingeführt
 
+
+
+\##Version 10.5.3 – Testphase 1
+
+
+
+"Weitere Rückmeldungen aus der ersten Testphase wurden ausgewertet und kleinere Bedienungsprobleme behoben."
+
+
+
+\###Behobene Probleme
+
+
+
+\*Textfeld für Rezensionen
+
+
+
+Während der Bewertung eines Buches fiel auf, dass der Cursor beim Anklicken des Review-Feldes nicht am Anfang des Feldes erschien. Zudem wurde der Platzhaltertext „Deine Meinung zum Buch" erst nach mehrmaligem Löschen sichtbar.
+
+
+
+Ursache:
+
+
+
+\*Im textarea-Element befanden sich unbeabsichtigt Zeilenumbrüche und Leerzeichen zwischen öffnendem und schließendem Tag.
+
+\*Der Browser interpretierte diese als vorhandenen Inhalt.
+
+
+
+Lösung:
+
+
+
+\*Textarea bereinigt.
+
+\*Öffnender und schließender Tag direkt hintereinander gesetzt.
+
+
+
+Ergebnis:
+
+
+
+\*Cursor startet korrekt im leeren Eingabefeld.
+
+\*Der Platzhaltertext wird sofort angezeigt.
+
+\*Benutzer können Rezensionen intuitiver erfassen.
+
+
+
+\###Ergebnis
+
+
+
+\*Weitere UX-Probleme aus der Testphase behoben
+
+\*Eingabe von Rezensionen verbessert
+
+\*Benutzerfreundlichkeit der Bewertungsfunktion erhöht
+

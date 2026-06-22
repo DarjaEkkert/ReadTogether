@@ -1,3 +1,4 @@
+let openedRounds = [];
 // Bibliothek anzeigen
 async function loadLibrary() {
 
@@ -87,10 +88,19 @@ async function toggleLibraryRound(roundId) {
 
         initRatings();
 
+        if (!openedRounds.includes(roundId)) {
+            openedRounds.push(roundId);
+        }
+
         area.style.display = "flex";
         button.textContent = "Bücher ausblenden";
 
     } else {
+
+        openedRounds =
+            openedRounds.filter(
+                id => id !== roundId
+            );
 
         area.style.display = "none";
         button.textContent = "Bücher anzeigen";

@@ -224,10 +224,8 @@ function createBookCard(b, role) {
 
     </div>
 
-    <textarea
-        id="review-${b.id}"
-        placeholder="Deine Meinung zum Buch">
-    </textarea>
+    <textarea id="review-${b.id}"
+                placeholder="Deine Meinung zum Buch"></textarea>
 
     <button onclick="saveReview('${b.id}')">
         Speichern
