@@ -28,27 +28,6 @@ async function loadBooks() {
         return;
     }
 
-activeReadingRound = activeRound;
-//Information über Aktive Leserunde
-document.getElementById("currentReadingRoundInfo").innerHTML = `
-    <div class="form">
-
-        <strong>
-            ${activeRound.year} Runde ${activeRound.round_number}
-        </strong>
-
-        <br>
-
-        Thema:
-        ${activeRound.theme}
-
-        <br>
-
-        Lesen bis:
-        ${activeRound.end_date}
-
-    </div>
-`;
 
     if (!user) {
 
@@ -114,7 +93,29 @@ if (allReviewsError) {
     books = booksData;
     reviews = reviewsData;
     allReviews = allReviewsData;
-    profiles = profilesData;
+    const remainingBooks = booksData.filter(book =>
+    !reviewsData.some(review =>
+        review.book_id === book.id
+    )
+).length;
+
+    document.getElementById("currentReadingRoundInfo").innerHTML = `
+        <div class="form">
+
+            <strong>
+                ${activeRound.year} Runde ${activeRound.round_number}
+            </strong>
+
+            <br>
+            Thema:
+            ${activeRound.theme}
+            <br>
+
+            ${remainingBooks} Buch${remainingBooks !== 1 ? "er" : ""}
+            bis zum ${activeRound.end_date} lesen
+
+        </div>
+    `;
   
     document.getElementById("booksRead").textContent = `Gelesene Bücher 2026: ${reviews.length}`;
 

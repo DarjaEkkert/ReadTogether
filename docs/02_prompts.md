@@ -325,3 +325,46 @@ so, meine gedanken jetzt.
 
 
 bevor ReadTogether veröffentlicht wird brauchen wir große Refactoring "
+
+### Umgesetzte Funktionen
+
+* Einführung eines zentralen View-Systems mit `showView()`
+* Auslagerung der Profilfunktionen nach `profile.js`
+* Auslagerung der Administrationsfunktionen nach `admin.js`
+* Auslagerung der Bibliotheksfunktionen nach `library.js`
+* Auslagerung der Leserundenverwaltung nach `readingRounds.js`
+* Auslagerung der administrativen Buchfunktionen nach `booksAdmin.js`
+* Einführung einer separaten Administrationsansicht
+* Vereinfachung der Navigation zwischen Home, Profil und Administration
+* Entfernung mehrfacher und redundanter `style.display`-Steuerungen
+
+### Technische Umsetzung
+
+Das Refactoring wurde schrittweise durchgeführt. Nach jeder Änderung wurde die Anwendung getestet, bevor weitere Funktionen ausgelagert wurden. Die großen Dateien `users.js` und `books.js` wurden analysiert und fachlich zusammengehörige Funktionen in eigene Module verschoben.
+
+Zusätzlich wurde ein einheitliches View-System eingeführt, sodass die Navigation nicht mehr über zahlreiche einzelne Anzeigen- und Ausblendlogiken erfolgt.
+
+### Ergebnis
+
+Die Codebasis ist deutlich übersichtlicher geworden. Funktionen sind nun fachlich getrennt organisiert und leichter wartbar. Die Navigation zwischen den Bereichen der Anwendung wurde vereinfacht und die Anwendung für die ersten Testnutzer vorbereitet.
+
+## Version 10.4 – Anzeige verbleibender Bücher
+
+### Verwendete Prompts
+
+"Die Anzeige der aktiven Leserunde soll erweitert werden. Statt der Gesamtanzahl der Bücher soll angezeigt werden, wie viele Bücher der aktuell angemeldete Benutzer noch lesen muss."
+
+"Prüfe die bestehende Logik zur Berechnung der gelesenen Bücher und ermittle, wie die verbleibenden Bücher der aktiven Leserunde korrekt berechnet werden können."
+
+"Die Berechnung soll nur Bücher der aktuellen Leserunde berücksichtigen und die vom aktuell angemeldeten Benutzer gespeicherten Bewertungen auswerten."
+
+"Die neue Anzeige soll direkt in der Übersicht der aktiven Leserunde erscheinen und automatisch aktualisiert werden, sobald eine neue Bewertung gespeichert wird."
+
+### Ergebnis
+
+Die Startseite zeigt nun für jeden Benutzer den individuellen Fortschritt innerhalb der aktiven Leserunde an. Die Anzahl der verbleibenden Bücher wird automatisch anhand der bereits gespeicherten Bewertungen des angemeldeten Benutzers berechnet.
+
+Im dargestellten Beispiel hat das Mitglied „TestK“ bereits drei Bücher der aktuellen Leserunde bewertet. Die Anwendung erkennt automatisch, dass noch zwei Bücher offen sind, und zeigt dies als Hinweis „2 Bücher bis zum 2026-06-27 lesen“ in der Leserundenübersicht an.
+
+Dadurch erhalten die Teilnehmer einen schnellen Überblick über ihren aktuellen Fortschritt und die noch verbleibenden Bücher der laufenden Leserunde.
+

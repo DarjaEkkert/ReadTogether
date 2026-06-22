@@ -52,3 +52,23 @@ Die Anwendung bietet weiterhin denselben Funktionsumfang wie zuvor, verfügt nun
 
 Mit Abschluss dieser Version ist ReadTogether technisch für Deployment und erste Benutzertests vorbereitet.
 
+## Version 10.4 – Anzeige verbleibender Bücher
+
+Die Anzeige der aktiven Leserunde wurde erweitert, um den aktuellen Lesefortschritt der Teilnehmer besser sichtbar zu machen.
+
+### Umgesetzte Funktionen
+
+* Anzeige der noch zu lesenden Bücher in der aktiven Leserunde
+* Automatische Berechnung anhand der vom Benutzer gespeicherten Bewertungen
+* Dynamische Anpassung der Anzahl bei neuen Bewertungen
+* Integration der Information direkt in die Übersicht der aktiven Leserunde
+
+### Technische Umsetzung
+
+Bei jedem Laden der Bücher werden die Bücher der aktiven Leserunde mit den vom aktuell angemeldeten Benutzer gespeicherten Bewertungen verglichen. Aus dieser Differenz wird die Anzahl der noch nicht gelesenen Bücher berechnet und in der Leserundenübersicht angezeigt.
+
+### Ergebnis
+
+Teilnehmer sehen nun direkt auf der Startseite, wie viele Bücher der aktuellen Leserunde noch gelesen werden müssen. Dadurch wird der persönliche Fortschritt innerhalb der Leserunde transparenter dargestellt.
+
+![Anzeige verbleibender Bücher in der aktiven Leserunde](images/version10_4_verbleibende_buecher.png)
