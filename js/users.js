@@ -40,7 +40,15 @@ async function registerUser() {
         }
     }
 
-    alert("Registrierung erfolgreich!");
+    const message = document.getElementById("registerMessage");
+
+    message.textContent = "✓ Registrierung erfolgreich!";
+
+    setTimeout(() => {
+         message.textContent = "";
+    }, 5000);
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
 }
 //Login
 async function loginUser() {
@@ -130,7 +138,7 @@ async function logoutUser() {
     document.getElementById("logoutBtn").style.display = "none";
     document.getElementById("currentUser").textContent = "";
     document.getElementById("welcomeMessage").textContent =
-                                "Lass uns lesen!";
+                                "Registriere dich oder logge dich ein und lass uns lesen!";
     document.getElementById("sidebar").style.display = "none";
     document.getElementById("profileSection").style.display = "none";
     document.getElementById("coverSlider").style.display = "block";

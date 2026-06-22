@@ -194,6 +194,13 @@ img {
     font-weight: bold;
     margin-top: 15px;
 }
+
+#registerMessage {
+    color: green !important;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+}
 #avatarImage {
     width: 140px;
     height: 140px;
