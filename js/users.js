@@ -3,12 +3,34 @@ let selectedAvatar = "avatar1";
 //Registrierung
 async function registerUser() {
 
-    const email =
-        document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    const password =
-        document.getElementById("password").value;
+    if (!email) {
 
+        const message = document.getElementById("registerMessage");
+
+            message.textContent ="Bitte E-Mail eingeben.";
+
+        return;
+    }
+    if (!password) {
+
+        const message = document.getElementById("registerMessage");
+
+            message.textContent = "Bitte Passwort eingeben.";
+
+        return;
+    }
+    if (password.length < 6) {
+
+        const message = document.getElementById("registerMessage");
+
+            message.textContent =
+                 "Das Passwort muss mindestens 6 Zeichen enthalten.";
+
+        return;
+    }
     const { data, error } =
         await supabaseClient.auth.signUp({
             email,
@@ -16,10 +38,13 @@ async function registerUser() {
         });
 
     if (error) {
-        alert(error.message);
+
+        const message = document.getElementById("registerMessage");
+
+        message.textContent =   error.message;
+
         return;
     }
-
     const user = data.user;
 
     if (user) {

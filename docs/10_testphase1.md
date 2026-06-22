@@ -148,3 +148,183 @@ Ergebnis:
 
 \*Bibliothek zeigt abgeschlossene Leserunden in sinnvoller Reihenfolge an
 
+
+
+\###Verbesserungsvorschläge
+
+
+
+\*Lesestatus erweitern
+
+
+
+Mehrere Nutzer wünschen zusätzliche Lesestatus.
+
+
+
+Aktuell:
+
+
+
+\*Gelesen
+
+
+
+Vorgeschlagene Erweiterungen:
+
+
+
+\*Lese aktuell
+
+\*Abgebrochen
+
+
+
+Nutzen:
+
+
+
+\*Realistischere Abbildung des Leseverhaltens
+
+\*Bessere Übersicht innerhalb des Buchclubs
+
+\*Mehr Interaktion zwischen den Mitgliedern
+
+
+
+Status:
+
+
+
+Für Version 11.0 prüfen
+
+
+
+\*Bibliotheksansicht wird zurückgesetzt
+
+
+
+Beim Markieren eines Buches als gelesen werden geöffnete Bibliotheksrunden automatisch geschlossen.
+
+
+
+Ursache:
+
+
+
+\*Nach dem Speichern einer Bewertung wird die komplette Buch- und Bibliotheksansicht neu geladen.
+
+
+
+Auswirkung:
+
+
+
+\*Benutzer verlieren ihre aktuelle Position in der Bibliothek.
+
+\*Geöffnete Leserunden müssen erneut geöffnet werden.
+
+
+
+Status:
+
+
+
+Offen
+
+
+
+Priorität:
+
+
+
+Mittel
+
+
+
+\##Version 10.5.2 – Testphase 1
+
+
+
+"Erstes Feedback zur Benutzerregistrierung wurde ausgewertet und die Eingabevalidierung verbessert."
+
+
+
+\###Behobene Probleme
+
+
+
+\*Registrierung ohne Passwort
+
+
+
+Externe Tester meldeten, dass bei einer Registrierung ohne Passwort keine verständliche Fehlermeldung angezeigt wurde.
+
+
+
+Lösung:
+
+
+
+\*Prüfung auf leere E-Mail-Adresse ergänzt
+
+\*Prüfung auf leeres Passwort ergänzt
+
+\*Benutzerfreundliche Meldungen im Interface statt technischer Supabase-Fehler
+
+
+
+Ergebnis:
+
+
+
+\*Benutzer erhalten nun sofort verständliche Hinweise bei fehlenden Eingaben.
+
+
+
+\---
+
+
+
+\*Zu kurzes Passwort
+
+
+
+Externe Tester meldeten Unklarheiten bei der Passwortvergabe.
+
+
+
+Lösung:
+
+
+
+\*Prüfung der Passwortlänge vor der Registrierung ergänzt.
+
+
+
+Ergebnis:
+
+
+
+\*Passwörter mit weniger als 6 Zeichen werden abgefangen.
+
+\*Benutzer erhalten die Meldung:
+
+
+
+"Das Passwort muss mindestens 6 Zeichen enthalten."
+
+
+
+\###Ergebnis
+
+
+
+\*Registrierungsprozess benutzerfreundlicher gestaltet
+
+\*Technische Fehlermeldungen reduziert
+
+\*Erstes Testerfeedback erfolgreich umgesetzt
+
+\*Grundlegende Eingabevalidierung für neue Benutzer eingeführt
+
