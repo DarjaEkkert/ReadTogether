@@ -392,3 +392,177 @@ Ergebnis:
 
 \*Benutzerfreundlichkeit der Bewertungsfunktion erhöht
 
+
+
+\##
+
+
+
+"Weitere Rückmeldungen aus der ersten Testphase wurden ausgewertet und kleinere Bedienungsprobleme behoben."
+
+
+
+\###Behobene Probleme
+
+
+
+\*Textfeld für Rezensionen
+
+
+
+Während der Bewertung eines Buches fiel auf, dass der Cursor beim Anklicken des Review-Feldes nicht am Anfang des Feldes erschien. Zudem wurde der Platzhaltertext „Deine Meinung zum Buch" erst nach mehrmaligem Löschen sichtbar.
+
+
+
+Ursache:
+
+
+
+\*Im textarea-Element befanden sich unbeabsichtigt Zeilenumbrüche und Leerzeichen zwischen öffnendem und schließendem Tag.
+
+\*Der Browser interpretierte diese als vorhandenen Inhalt.
+
+
+
+Lösung:
+
+
+
+\*Textarea bereinigt.
+
+\*Öffnender und schließender Tag direkt hintereinander gesetzt.
+
+
+
+Ergebnis:
+
+
+
+\*Cursor startet korrekt im leeren Eingabefeld.
+
+\*Der Platzhaltertext wird sofort angezeigt.
+
+\*Benutzer können Rezensionen intuitiver erfassen.
+
+
+
+\---
+
+
+
+\*Kennzeichnung gelesener Bücher
+
+
+
+Mehrere Tester empfanden die ausgegraute Darstellung gelesener Bücher als unübersichtlich und wenig ansprechend.
+
+
+
+Lösung:
+
+
+
+\*Ausgrauen gelesener Bücher entfernt.
+
+\*Grünes Badge „✓ Gelesen" direkt auf dem Buchcover ergänzt.
+
+
+
+Ergebnis:
+
+
+
+\*Gelesene Bücher bleiben vollständig sichtbar.
+
+\*Der Lesestatus ist auf den ersten Blick erkennbar.
+
+\*Die Darstellung wirkt moderner und benutzerfreundlicher.
+
+
+
+\[Screenshot: Badge „✓ Gelesen" auf dem Buchcover]
+
+
+
+\###Ergebnis
+
+
+
+\*Weitere UX-Probleme aus der Testphase behoben.
+
+\*Eingabe von Rezensionen verbessert.
+
+\*Darstellung gelesener Bücher optimiert.
+
+\*Benutzerfreundlichkeit der Bewertungsfunktion erhöht.
+
+\*Lesestatus wird nun deutlich und intuitiv auf dem Buchcover dargestellt.
+
+
+
+\###
+
+"Auf Grundlage des Feedbacks externer Tester wurde die Anzeige von Rezensionen verbessert."
+
+
+
+\###Behobene Probleme
+
+
+
+\*Anzeige langer Rezensionen
+
+
+
+Externe Tester meldeten, dass längere Rezensionen nur gekürzt angezeigt wurden und der vollständige Text nicht gelesen werden konnte.
+
+
+
+Ursache:
+
+
+
+\*Rezensionen wurden nach 100 Zeichen abgeschnitten.
+
+\*Es bestand keine Möglichkeit, den vollständigen Text anzuzeigen.
+
+
+
+Lösung:
+
+
+
+\*Schaltfläche „Mehr anzeigen" ergänzt.
+
+\*Rezensionen können nun vollständig ein- und ausgeklappt werden.
+
+\*Schaltfläche „Weniger anzeigen" zum erneuten Einklappen ergänzt.
+
+
+
+Ergebnis:
+
+
+
+\*Auch längere Rezensionen können vollständig gelesen werden.
+
+\*Die Buchkarten bleiben übersichtlich.
+
+\*Die Benutzerfreundlichkeit der Review-Funktion wurde verbessert.
+
+
+
+\[Screenshot: Rezension mit „Mehr anzeigen" und vollständig geöffneter Rezension]
+
+
+
+\###Ergebnis
+
+
+
+\*Lange Rezensionen vollständig lesbar.
+
+\*Buchkarten bleiben übersichtlich.
+
+\*Weitere Verbesserung der Benutzerfreundlichkeit auf Grundlage des Testerfeedbacks.
+

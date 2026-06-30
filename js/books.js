@@ -141,10 +141,7 @@ function createBookCard(b, role) {
             ) / reviewCount).toFixed(1)
             : "-";
 
-    if (alreadyRead) {
-        div.classList.add("book-read");
-    }
-       let actions = "";
+           let actions = "";
       if (role === "Administrator") {
 
     actions = `
@@ -173,7 +170,17 @@ function createBookCard(b, role) {
     }
 }
     div.innerHTML = `
-        ${b.cover_url ? `<img src="${b.cover_url}" />` : ""}
+        ${b.cover_url ? `
+        <div class="cover-container">
+
+            ${alreadyRead
+                ? `<div class="read-badge">✓ Gelesen</div>`
+                : ""}
+
+        <img src="${b.cover_url}" />
+
+    </div>
+    ` : ""}
       <div class="book-content">
         <div class="book-title">${b.title}</div>
         <div class="book-author">by ${b.author}</div>
@@ -262,12 +269,58 @@ function createReviewsHtml(bookReviews) {
 
         return `
             <div class="single-review">
+
                 <strong>${username}</strong> ${stars}
+
                 <br>
-                ${shortReview}
+
+                <span id="reviewText-${review.id}">
+                    ${shortReview}
+                </span>
+
+                ${
+                    fullReview.length > 100
+                        ? `<br>
+                           <button
+                               class="review-toggle"
+                               onclick="toggleReview('${review.id}')">
+
+                               Mehr anzeigen
+
+                           </button>`
+                        : ""
+                }
+
             </div>
         `;
     }).join("");
+}
+
+function toggleReview(reviewId) {
+
+    const text =
+        document.getElementById(`reviewText-${reviewId}`);
+
+    const button =
+        event.target;
+
+    const fullReview =
+        allReviews.find(r => r.id == reviewId).review;
+
+    if (button.textContent.trim() === "Mehr anzeigen") {
+
+        text.textContent = fullReview;
+        button.textContent = "Weniger anzeigen";
+
+    } else {
+
+        text.textContent =
+            fullReview.length > 100
+                ? fullReview.substring(0, 100) + "..."
+                : fullReview;
+
+        button.textContent = "Mehr anzeigen";
+    }
 }
 
 function renderBooks() {
